@@ -702,14 +702,60 @@
 <!-- ============ FOOD LOG ============ -->
 <div class="card" id="food-log">
   <h2>Daily Food Log</h2>
-  <p style="color:#718096;">This section will be updated from your Telegram group entries. Each entry will be assessed for gall bladder safety, inflammation impact, and fertility optimization.</p>
-
-  <div class="food-log-entry">
-    <div class="date">March 7, 2026</div>
-    <p><em>Awaiting first entry from Telegram group...</em></p>
-    <p style="color:#718096; font-size:0.85em;">Format: Tell me what you ate, when you ate it, and I'll rate it with remarks.</p>
+  <p style="color:#718096;">Powered by Telegram bot. Send what you ate to <strong>@JuhiFoodLogBot</strong> and it appears here automatically.</p>
+  <div id="food-log-entries">
+    <p><em>Loading food log...</em></p>
   </div>
 </div>
+
+<script>
+(async function() {
+  const container = document.getElementById('food-log-entries');
+  try {
+    const res = await fetch('food-log.json?' + Date.now());
+    if (!res.ok) throw new Error('No log yet');
+    const entries = await res.json();
+    if (!entries.length) throw new Error('Empty');
+
+    // Group by date
+    const byDate = {};
+    entries.forEach(e => {
+      if (!byDate[e.date]) byDate[e.date] = [];
+      byDate[e.date].push(e);
+    });
+
+    const dates = Object.keys(byDate).sort().reverse();
+    let html = '';
+    const verdictIcon = {good: '&#10003;', okay: '&#9888;', bad: '&#10007;'};
+    const verdictClass = {good: 'verdict-good', okay: '', bad: 'verdict-bad'};
+
+    dates.forEach(date => {
+      const d = new Date(date + 'T00:00:00+05:30');
+      const dateStr = d.toLocaleDateString('en-IN', {day:'numeric', month:'long', year:'numeric'});
+      const dayFat = byDate[date].reduce((s, e) => s + (e.fat_estimate_g || 0), 0);
+
+      html += '<div class="food-log-entry">';
+      html += '<div class="date">' + dateStr + ' &mdash; Total fat: ~' + dayFat + 'g</div>';
+
+      byDate[date].forEach(e => {
+        const icon = verdictIcon[e.verdict] || '?';
+        const cls = verdictClass[e.verdict] || '';
+        html += '<p><strong>' + e.time + '</strong> | ';
+        html += '<span class="' + cls + '">' + icon + ' ' + (e.verdict||'').toUpperCase() + '</span> ';
+        html += e.meal_type + ' &mdash; ' + (e.items||[]).join(', ') + '</p>';
+        html += '<p style="color:#718096;font-size:0.9em;margin-top:-8px;">' + e.remarks + '</p>';
+        if (e.suggestions) html += '<p style="color:#4299e1;font-size:0.85em;margin-top:-8px;">Tip: ' + e.suggestions + '</p>';
+      });
+
+      html += '</div>';
+    });
+
+    container.innerHTML = html;
+  } catch(e) {
+    container.innerHTML = '<div class="food-log-entry"><div class="date">No entries yet</div><p><em>Send your first food message to the Telegram bot to get started!</em></p></div>';
+  }
+})();
+</script>
 
 <!-- ============ PILES UPDATE ============ -->
 <div class="card" id="piles">
