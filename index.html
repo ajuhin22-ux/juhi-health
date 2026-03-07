@@ -195,6 +195,9 @@
     <div class="sub-tab" onclick="switchSub('juhi','clothing')">Clothing</div>
     <div class="sub-tab" onclick="switchSub('juhi','experts')">Experts</div>
     <div class="sub-tab" onclick="switchSub('juhi','food-log')">Food Log</div>
+    <div class="sub-tab" onclick="switchSub('juhi','history')">Medical History</div>
+    <div class="sub-tab" onclick="switchSub('juhi','full-labs')">Full Lab Panel</div>
+    <div class="sub-tab" onclick="switchSub('juhi','pending-tests')">Pending Tests</div>
   </div>
 
   <!-- BLOOD WORK -->
@@ -775,6 +778,362 @@
       <div id="food-log-entries">
         <p><em>Loading food log...</em></p>
       </div>
+    </div>
+  </div>
+
+  <!-- MEDICAL HISTORY -->
+  <div class="sub-panel" id="juhi-history">
+    <div class="card">
+      <h2>Medical History — Juhi Nahar Shah</h2>
+
+      <h3>Demographics</h3>
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>Age</td><td>31 years</td></tr>
+        <tr><td>Sex</td><td>Female</td></tr>
+        <tr><td>Height</td><td>~163 cm</td></tr>
+        <tr><td>Weight</td><td>~87 kg</td></tr>
+        <tr><td>BMI</td><td class="high">~32.7 (Obese Class I)</td></tr>
+        <tr><td>Target Weight</td><td>60 kg</td></tr>
+        <tr><td>Diet</td><td>Strict vegetarian</td></tr>
+        <tr><td>Blood Group</td><td>To confirm</td></tr>
+      </table>
+
+      <h3>Surgical History</h3>
+      <table>
+        <tr><th>Procedure</th><th>Date</th><th>Surgeon</th><th>Ongoing Impact</th></tr>
+        <tr>
+          <td><strong>Laparoscopic Cholecystectomy</strong></td>
+          <td>2021</td>
+          <td>Dr. Manmohan Kamath, Nanavati Hospital</td>
+          <td class="high">No gall bladder. Chronic fat malabsorption. Fat-soluble vitamins (A, D, E, K) poorly absorbed. Max ~5g fat/meal. Bile drips continuously instead of on-demand release.</td>
+        </tr>
+      </table>
+
+      <h3>Chronic Conditions</h3>
+      <table>
+        <tr><th>Condition</th><th>Status</th><th>Details</th></tr>
+        <tr>
+          <td><strong>PCOS</strong></td>
+          <td class="watch">History — currently resolved phenotype</td>
+          <td>Previously diagnosed. Insulin resistance persists (HOMA-IR 1.9, Fasting Insulin 15.3). Irregular cycles (44-day and 19-day outliers in 2025).</td>
+        </tr>
+        <tr>
+          <td><strong>Diminished Ovarian Reserve</strong></td>
+          <td class="high">Active</td>
+          <td>AMH 0.80 ng/mL (Dec 2024). Low for age 31. Pre-conception plan targeting July 2026.</td>
+        </tr>
+        <tr>
+          <td><strong>Hemorrhoids</strong></td>
+          <td class="watch">Under treatment</td>
+          <td>Grade II (Dr. Khushi, Healing Hands). External at 6 o'clock (Dr. Kamath). Severe anal spasm. Skin tags at 6 & 12 o'clock. Present for years. Conservative management with Daflon 500mg started March 7, 2026.</td>
+        </tr>
+        <tr>
+          <td><strong>Chronic Constipation</strong></td>
+          <td class="watch">Active</td>
+          <td>Likely multifactorial: post-cholecystectomy bile acid malabsorption + low fiber + sedentary. Coffee worsens it. Gut microbiome test recommended but not yet done.</td>
+        </tr>
+        <tr>
+          <td><strong>Allergic Rhinitis</strong></td>
+          <td class="watch">Active</td>
+          <td>Chronic sneezing for months. Small bump at right side of nose tip (2-3 months, likely benign vestibular/sebaceous cyst). Montair LC prescribed (5 days). Needs ENT/allergy workup. Referred to Dr. Bhavesh Acharya (homeopathy).</td>
+        </tr>
+        <tr>
+          <td><strong>Plantar Fasciitis</strong></td>
+          <td class="watch">Active</td>
+          <td>Right foot. Limits running on hard surfaces. Cycling/elliptical preferred.</td>
+        </tr>
+        <tr>
+          <td><strong>Anxiety</strong></td>
+          <td class="watch">Chronic</td>
+          <td>Chronic anxiety with breathlessness + emotional dysregulation. No formal psychiatric diagnosis or medication. Exacerbated by stress events.</td>
+        </tr>
+        <tr>
+          <td><strong>Obesity</strong></td>
+          <td class="high">Active</td>
+          <td>BMI ~32.7. Visceral adiposity contributing to inflammation (hsCRP 12.7), insulin resistance, and low HDL.</td>
+        </tr>
+      </table>
+
+      <h3>Recent Acute Stressors (Jan-Feb 2026)</h3>
+      <div class="alert-red">
+        <strong>Severe psychosocial stress — most likely acute trigger for prolactin spike and inflammation surge:</strong>
+        <ul>
+          <li><strong>January 2026:</strong> Brother diagnosed with TB (lungs + spine)</li>
+          <li><strong>February 2026:</strong> Husband's cousin passed away (bereavement)</li>
+          <li>Resultant 2-month sedentary period (Jan-Feb 2026)</li>
+          <li>Prolactin was NORMAL (12.33) just 10 months prior</li>
+        </ul>
+      </div>
+
+      <h3>Reproductive History</h3>
+      <table>
+        <tr><th>Factor</th><th>Detail</th></tr>
+        <tr><td>Gravidity / Parity</td><td>G0P0 (nulligravida)</td></tr>
+        <tr><td>Menarche</td><td>To confirm</td></tr>
+        <tr><td>Typical Cycle</td><td>30 days, regular, 5-day period</td></tr>
+        <tr><td>Abnormal Cycles (2025)</td><td class="high">44-day (Feb-Apr) + 19-day (Dec) — likely anovulatory</td></tr>
+        <tr><td>Conception Plan</td><td>Active pre-conception. Target July 2026 (flexible — health first)</td></tr>
+        <tr><td>Partner</td><td>Abhas Chowdhry, 33M, active/healthy</td></tr>
+      </table>
+
+      <h3>Drug Allergies & Intolerances</h3>
+      <table>
+        <tr><th>Substance</th><th>Reaction</th></tr>
+        <tr><td>No known drug allergies</td><td>—</td></tr>
+        <tr><td>Coffee</td><td class="watch">Causes constipation — avoid</td></tr>
+        <tr><td>High-fat meals (&gt;5g/serving)</td><td class="watch">GI distress (no gall bladder)</td></tr>
+      </table>
+
+      <h3>Family History</h3>
+      <table>
+        <tr><th>Relation</th><th>Condition</th></tr>
+        <tr><td>Brother</td><td>Tuberculosis (lungs + spine, diagnosed Jan 2026)</td></tr>
+        <tr><td colspan="2"><em>Detailed family history to be completed — diabetes, hypertension, heart disease, cancer, autoimmune</em></td></tr>
+      </table>
+
+      <h3>Lifestyle</h3>
+      <table>
+        <tr><th>Factor</th><th>Detail</th></tr>
+        <tr><td>Smoking</td><td>Never</td></tr>
+        <tr><td>Alcohol</td><td>Rare/social</td></tr>
+        <tr><td>Exercise</td><td>Sedentary Jan-Feb 2026. Resuming gym (has membership with steam/cold shower). Pickleball 1-2x/week with husband.</td></tr>
+        <tr><td>Sleep</td><td>Variable. Target 10:30 PM, 7-8 hours. Apple Watch tracking.</td></tr>
+        <tr><td>Occupation</td><td>Senior Manager, Digital Marketing (desk job)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- FULL LAB PANEL -->
+  <div class="sub-panel" id="juhi-full-labs">
+    <div class="card">
+      <h2>Complete Lab Panel — March 6, 2026</h2>
+      <p style="font-size:0.85em; color:#718096;">Orange Health Labs, Mumbai | Fasting | Day 2 of period | 29/30 results received</p>
+
+      <h3>Hormones (Complete)</h3>
+      <table>
+        <tr><th>Marker</th><th>Value</th><th>Reference Range</th><th>Status</th></tr>
+        <tr><td>Prolactin</td><td class="high">40.4 ng/mL</td><td>2.6-31.9</td><td class="high">HIGH (was 12.33 May '25)</td></tr>
+        <tr><td>Estradiol (E2)</td><td class="good">63.504 pg/mL</td><td>Follicular: &lt;10-122</td><td class="good">Normal</td></tr>
+        <tr><td>LH</td><td class="good">3.48 mIU/mL</td><td>Follicular: 2.58-12.1</td><td class="good">Normal</td></tr>
+        <tr><td>FSH</td><td class="good">7.58 mIU/mL</td><td>Follicular: 1.98-11.6</td><td class="good">Normal</td></tr>
+        <tr><td>LH:FSH Ratio</td><td class="watch">0.46</td><td>1-2 expected</td><td class="watch">Low (FSH dominant)</td></tr>
+        <tr><td>Total Testosterone</td><td class="good">22.6 ng/dL</td><td>5.7-77</td><td class="good">Normal</td></tr>
+        <tr><td>DHEA-S</td><td class="good">128.1 &micro;g/dL</td><td>58.7-227 (F, 30-39)</td><td class="good">Normal (rules out adrenal tumor)</td></tr>
+        <tr><td>Cortisol AM</td><td>PENDING</td><td>6.7-22.6 &micro;g/dL</td><td>Due March 9</td></tr>
+      </table>
+
+      <h3>Thyroid Panel (Complete)</h3>
+      <table>
+        <tr><th>Marker</th><th>May '25</th><th>Mar '26</th><th>Reference</th><th>Status</th></tr>
+        <tr><td>TSH</td><td>3.052</td><td class="good">2.287 &micro;IU/mL</td><td>0.4-4.049</td><td class="good">Improved (now &lt;2.5 preconception target)</td></tr>
+        <tr><td>Total T3</td><td>—</td><td class="watch">1.02 ng/mL</td><td>0.97-1.69</td><td class="watch">LOW-NORMAL (bottom of range)</td></tr>
+        <tr><td>Total T4</td><td>—</td><td class="watch">5.91 &micro;g/dL</td><td>5.53-11</td><td class="watch">LOW-NORMAL (bottom of range)</td></tr>
+        <tr><td>Free T4</td><td>1.06</td><td class="watch">0.91 ng/dL</td><td>0.78-2.19</td><td class="watch">LOW-NORMAL (dropped -14%)</td></tr>
+      </table>
+      <div class="alert-orange">
+        <strong>All thyroid values clustering at bottom of range.</strong> Anti-TPO + Anti-TG antibodies NOT tested — needed to rule out early Hashimoto's thyroiditis. TSH is within preconception target but T3/T4/FT4 warrant monitoring.
+      </div>
+
+      <h3>Metabolic Panel</h3>
+      <table>
+        <tr><th>Marker</th><th>Value</th><th>Reference</th><th>Status</th></tr>
+        <tr><td>HbA1c</td><td class="good">5.0%</td><td>&lt;5.7</td><td class="good">Normal</td></tr>
+        <tr><td>Fasting Glucose</td><td class="good">83 mg/dL</td><td>70-99</td><td class="good">Normal</td></tr>
+        <tr><td>Fasting Insulin</td><td class="watch">15.3 &micro;IU/mL</td><td>2.3-26 (optimal &lt;10)</td><td class="watch">Elevated — pancreas overcompensating</td></tr>
+        <tr><td>HOMA-IR</td><td class="watch">1.9</td><td>0.7-2.0</td><td class="watch">Borderline (upper limit)</td></tr>
+        <tr><td>Beta Cell Function</td><td class="watch">178%</td><td>—</td><td class="watch">HIGH — pancreas working hard to maintain normal glucose</td></tr>
+      </table>
+
+      <h3>Lipid Panel (Complete)</h3>
+      <table>
+        <tr><th>Marker</th><th>May '25</th><th>Mar '26</th><th>Reference</th><th>Status</th></tr>
+        <tr><td>Total Cholesterol</td><td>196</td><td class="good">176 mg/dL</td><td>&lt;200</td><td class="good">Improved</td></tr>
+        <tr><td>Triglycerides</td><td>116</td><td class="good">101 mg/dL</td><td>&lt;150</td><td class="good">Improved</td></tr>
+        <tr><td>HDL</td><td class="good">51</td><td class="high">42 mg/dL</td><td>&gt;50</td><td class="high">Dropped -18%</td></tr>
+        <tr><td>LDL</td><td>121.8</td><td class="high">113.8 mg/dL</td><td>&lt;100</td><td class="high">Above optimal</td></tr>
+        <tr><td>VLDL</td><td>23.2</td><td class="good">20.2 mg/dL</td><td>&lt;30</td><td class="good">Normal</td></tr>
+        <tr><td>Non-HDL Cholesterol</td><td>145</td><td class="high">134 mg/dL</td><td>&lt;130</td><td class="high">Above optimal</td></tr>
+        <tr><td>ApoB</td><td>—</td><td class="good">87.23 mg/dL</td><td>60-140</td><td class="good">Normal</td></tr>
+        <tr><td>ApoA1</td><td>—</td><td class="watch">110.43 mg/dL</td><td>105-175</td><td class="watch">Low-normal</td></tr>
+        <tr><td>ApoB/A1 Ratio</td><td>—</td><td class="watch">0.79</td><td>0.35-0.98</td><td class="watch">Upper half — monitor</td></tr>
+      </table>
+
+      <h3>Inflammation Markers</h3>
+      <table>
+        <tr><th>Marker</th><th>Value</th><th>Reference</th><th>Status</th></tr>
+        <tr><td>hsCRP</td><td class="high">12.703 mg/L</td><td>&lt;1 low risk, 1-3 avg, &gt;3 high risk</td><td class="high">4x high-risk threshold</td></tr>
+        <tr><td>CRP (Quantitative)</td><td class="high">16.4 mg/L</td><td>&lt;10</td><td class="high">Elevated</td></tr>
+        <tr><td>ESR</td><td class="high">31 mm/h</td><td>0-20</td><td class="high">Elevated</td></tr>
+        <tr><td>IgE Total</td><td class="good">83.964 IU/mL</td><td>0-100</td><td class="good">Normal</td></tr>
+      </table>
+
+      <h3>Liver Function (Complete)</h3>
+      <table>
+        <tr><th>Marker</th><th>Value</th><th>Reference</th><th>Status</th></tr>
+        <tr><td>AST (SGOT)</td><td class="high">53 U/L</td><td>14-36</td><td class="high">Elevated (likely exercise + inflammation)</td></tr>
+        <tr><td>ALT (SGPT)</td><td class="good">22 U/L</td><td>&lt;50</td><td class="good">Normal</td></tr>
+        <tr><td>AST/ALT Ratio</td><td class="high">2.4</td><td>0.7-1.4</td><td class="watch">Elevated — suggests muscle source not liver</td></tr>
+        <tr><td>ALP</td><td class="good">70 U/L</td><td>38-126</td><td class="good">Normal</td></tr>
+        <tr><td>GGT</td><td class="good">12 U/L</td><td>12-43</td><td class="good">Normal (rules out alcohol/biliary cause)</td></tr>
+        <tr><td>Total Bilirubin</td><td class="good">0.24 mg/dL</td><td>0.2-1.3</td><td class="good">Normal</td></tr>
+        <tr><td>Direct Bilirubin</td><td class="good">0.1 mg/dL</td><td>0-0.3</td><td class="good">Normal</td></tr>
+        <tr><td>Total Protein</td><td class="good">7.1 g/dL</td><td>6-8.3</td><td class="good">Normal</td></tr>
+        <tr><td>Albumin</td><td class="good">4.0 g/dL</td><td>3.5-5</td><td class="good">Normal</td></tr>
+        <tr><td>Globulin</td><td class="good">3.1 g/dL</td><td>2-3.5</td><td class="good">Normal</td></tr>
+        <tr><td>A/G Ratio</td><td class="good">1.3</td><td>1.1-1.8</td><td class="good">Normal</td></tr>
+      </table>
+
+      <h3>Kidney Function (Complete)</h3>
+      <table>
+        <tr><th>Marker</th><th>Value</th><th>Reference</th><th>Status</th></tr>
+        <tr><td>Blood Urea</td><td class="good">23 mg/dL</td><td>15-36</td><td class="good">Normal</td></tr>
+        <tr><td>Creatinine</td><td class="good">0.57 mg/dL</td><td>0.52-1.04</td><td class="good">Normal</td></tr>
+        <tr><td>eGFR</td><td class="good">125 mL/min</td><td>&ge;90</td><td class="good">Normal</td></tr>
+        <tr><td>Uric Acid</td><td class="good">4.8 mg/dL</td><td>2.5-6.2</td><td class="good">Normal</td></tr>
+        <tr><td>Microalbumin/Creatinine Ratio</td><td class="good">6.0</td><td>&lt;30</td><td class="good">Normal</td></tr>
+      </table>
+
+      <h3>Iron Studies</h3>
+      <table>
+        <tr><th>Marker</th><th>Value</th><th>Reference</th><th>Status</th></tr>
+        <tr><td>Serum Iron</td><td class="watch">58 &micro;g/dL</td><td>37-170</td><td class="watch">Low-normal</td></tr>
+        <tr><td>Transferrin Saturation</td><td class="watch">19%</td><td>16-55</td><td class="watch">Low-normal</td></tr>
+        <tr><td>TIBC</td><td class="good">311 &micro;g/dL</td><td>265-497</td><td class="good">Normal</td></tr>
+        <tr><td>Ferritin</td><td>NOT TESTED</td><td>—</td><td class="high">Was 156.8 May '25 — NEEDS RETEST</td></tr>
+      </table>
+
+      <h3>Vitamins & Minerals</h3>
+      <table>
+        <tr><th>Marker</th><th>May '25</th><th>Mar '26</th><th>Reference</th><th>Status</th></tr>
+        <tr><td>Vitamin D (25-OH)</td><td class="good">45.7</td><td class="high">25.4 ng/mL</td><td>30-100</td><td class="high">Insufficient — crashed 44%</td></tr>
+        <tr><td>Vitamin B12</td><td>345</td><td class="good">658 pg/mL</td><td>187-883</td><td class="good">Nearly doubled</td></tr>
+        <tr><td>Magnesium</td><td>—</td><td class="watch">1.7 mg/dL</td><td>1.6-2.3</td><td class="watch">Low-normal</td></tr>
+        <tr><td>Calcium</td><td>—</td><td class="good">9.2 mg/dL</td><td>8.4-10.2</td><td class="good">Normal</td></tr>
+        <tr><td>Phosphorus</td><td>—</td><td class="good">3.8 mg/dL</td><td>2.5-4.5</td><td class="good">Normal</td></tr>
+      </table>
+
+      <h3>CBC (Complete)</h3>
+      <table>
+        <tr><th>Marker</th><th>Value</th><th>Reference</th><th>Status</th></tr>
+        <tr><td>WBC</td><td class="high">11,480 /mm&sup3;</td><td>4,000-10,000</td><td class="high">Elevated (+31% from May '25)</td></tr>
+        <tr><td>Neutrophils (ANC)</td><td class="high">7,451 /mm&sup3;</td><td>2,000-7,000</td><td class="high">Elevated</td></tr>
+        <tr><td>Lymphocytes</td><td class="good">2,985 /mm&sup3;</td><td>1,000-3,000</td><td class="good">Normal</td></tr>
+        <tr><td>Monocytes</td><td class="good">688 /mm&sup3;</td><td>200-1,000</td><td class="good">Normal</td></tr>
+        <tr><td>Eosinophils</td><td class="good">241 /mm&sup3;</td><td>20-500</td><td class="good">Normal</td></tr>
+        <tr><td>Basophils</td><td class="good">115 /mm&sup3;</td><td>20-100</td><td class="good">Normal</td></tr>
+        <tr><td>RBC</td><td class="good">4.36 M/&micro;L</td><td>3.8-4.8</td><td class="good">Normal</td></tr>
+        <tr><td>Hemoglobin</td><td class="watch">12.3 g/dL</td><td>12-15</td><td class="watch">Low-normal</td></tr>
+        <tr><td>Hematocrit</td><td class="good">38.1%</td><td>36-46</td><td class="good">Normal</td></tr>
+        <tr><td>MCV</td><td class="good">87.4 fL</td><td>83-101</td><td class="good">Normal</td></tr>
+        <tr><td>MCH</td><td class="good">28.2 pg</td><td>27-31</td><td class="good">Normal</td></tr>
+        <tr><td>MCHC</td><td class="good">32.3 g/dL</td><td>31.5-34.5</td><td class="good">Normal</td></tr>
+        <tr><td>RDW</td><td class="good">13.9%</td><td>11.5-14.5</td><td class="good">Normal</td></tr>
+        <tr><td>Platelets</td><td class="good">380 x10&sup3;/&micro;L</td><td>150-450</td><td class="good">Normal</td></tr>
+        <tr><td>MPV</td><td class="good">10.2 fL</td><td>6.5-12</td><td class="good">Normal</td></tr>
+      </table>
+
+      <h3>Other Tests</h3>
+      <table>
+        <tr><th>Marker</th><th>Value</th><th>Reference</th><th>Status</th></tr>
+        <tr><td>Amylase</td><td class="good">87 U/L</td><td>28-100</td><td class="good">Normal</td></tr>
+        <tr><td>Lipase</td><td class="good">129 U/L</td><td>13-140</td><td class="good">Normal (important post-cholecystectomy)</td></tr>
+        <tr><td>LDH</td><td class="good">185 U/L</td><td>125-220</td><td class="good">Normal</td></tr>
+        <tr><td>Troponin I</td><td class="good">&lt;1.50 ng/L</td><td>&lt;15.6</td><td class="good">Normal (cardiac risk ruled out)</td></tr>
+        <tr><td>Hepatitis B Surface Ag</td><td class="good">Non-reactive</td><td>—</td><td class="good">Negative</td></tr>
+      </table>
+
+      <h3>Urinalysis</h3>
+      <table>
+        <tr><th>Parameter</th><th>Result</th></tr>
+        <tr><td>Color / Appearance</td><td class="good">Yellow / Clear</td></tr>
+        <tr><td>pH</td><td class="good">6.0</td></tr>
+        <tr><td>Specific Gravity</td><td class="good">1.015</td></tr>
+        <tr><td>Protein / Glucose / Ketones / Blood / Nitrite</td><td class="good">All Negative</td></tr>
+        <tr><td>WBC / RBC / Epithelial / Casts / Crystals</td><td class="good">All within normal limits</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- PENDING TESTS -->
+  <div class="sub-panel" id="juhi-pending-tests">
+    <div class="card">
+      <h2>Pending & Recommended Tests</h2>
+
+      <h3>Pending Result</h3>
+      <table>
+        <tr><th>Test</th><th>Lab</th><th>Expected</th></tr>
+        <tr><td><strong>Cortisol AM (Fasting)</strong></td><td>Orange Health Labs</td><td class="watch">March 9, 2026</td></tr>
+      </table>
+
+      <h3>Urgent — Order Within 2 Weeks</h3>
+      <table>
+        <tr><th>Test</th><th>Why Needed</th><th>Clinical Relevance</th></tr>
+        <tr>
+          <td><strong>Anti-TPO Antibodies</strong></td>
+          <td class="high">All thyroid values at bottom of range (T3 1.02, T4 5.91, FT4 0.91)</td>
+          <td>Rules out Hashimoto's thyroiditis — autoimmune thyroid disease that progresses silently. Critical before conception.</td>
+        </tr>
+        <tr>
+          <td><strong>Anti-Thyroglobulin (Anti-TG)</strong></td>
+          <td class="high">Companion to Anti-TPO</td>
+          <td>~10% of Hashimoto's patients are Anti-TPO negative but Anti-TG positive.</td>
+        </tr>
+        <tr>
+          <td><strong>Ferritin</strong></td>
+          <td class="high">Not tested in March panel. Iron 58, Transferrin Sat 19% — both low-normal.</td>
+          <td>Iron stores critical for pregnancy. Was 156.8 May '25 — may have dropped. Ferritin &lt;30 = depleted stores even with normal hemoglobin.</td>
+        </tr>
+      </table>
+
+      <h3>Retest at 4-6 Weeks (~Mid-April 2026)</h3>
+      <table>
+        <tr><th>Test</th><th>Why</th><th>Conditions</th></tr>
+        <tr>
+          <td><strong>Prolactin (Retest)</strong></td>
+          <td class="high">Current 40.4 — need to confirm whether stress-related or pathological</td>
+          <td>Fasting. Morning (8-10 AM). Rested (no exercise that day). Avoid nipple stimulation 24h before. If still &gt;25 &rarr; MRI pituitary.</td>
+        </tr>
+        <tr>
+          <td><strong>hsCRP</strong></td>
+          <td class="high">Current 12.7 — track response to anti-inflammatory protocol</td>
+          <td>If still &gt;10 after lifestyle changes &rarr; investigate autoimmune / occult infection.</td>
+        </tr>
+        <tr>
+          <td><strong>HOMA-IR + Fasting Insulin</strong></td>
+          <td class="watch">Current 1.9 / 15.3 — borderline. Track response to exercise + myo-inositol.</td>
+          <td>Fasting. Morning.</td>
+        </tr>
+        <tr>
+          <td><strong>Progesterone (Day 21 of cycle)</strong></td>
+          <td class="high">Never tested. Abnormal cycle lengths suggest possible anovulation.</td>
+          <td>Must be drawn on Day 21 (or 7 days post-ovulation). Progesterone &gt;3 ng/mL confirms ovulation.</td>
+        </tr>
+        <tr>
+          <td><strong>AMH (Retest)</strong></td>
+          <td class="high">Last 0.80 Dec 2024 — 15 months ago. Need current level for fertility planning.</td>
+          <td>Can be drawn any day of cycle.</td>
+        </tr>
+      </table>
+
+      <h3>Consider Adding</h3>
+      <table>
+        <tr><th>Test</th><th>Why</th></tr>
+        <tr><td><strong>Homocysteine</strong></td><td>Methylation marker. Elevated = cardiovascular risk + poor folate metabolism. Important with MTHFR considerations and active folic acid supplementation.</td></tr>
+        <tr><td><strong>Serum Folate</strong></td><td>Confirm folic acid supplementation is being absorbed (no gall bladder = potential malabsorption).</td></tr>
+        <tr><td><strong>Vitamin A</strong></td><td>Fat-soluble vitamin — at risk post-cholecystectomy like Vitamin D.</td></tr>
+        <tr><td><strong>Vitamin E</strong></td><td>Fat-soluble vitamin — at risk post-cholecystectomy. Also important for egg quality.</td></tr>
+        <tr><td><strong>Gut Microbiome Test</strong></td><td>Recommended by Dr. Khushi (Healing Hands) for chronic constipation root cause analysis.</td></tr>
+        <tr><td><strong>Semen Analysis (Abhas)</strong></td><td>Baseline male fertility assessment. Standard when couple planning conception.</td></tr>
+      </table>
+
+      <h3>Previous Reports on File</h3>
+      <table>
+        <tr><th>Date</th><th>Lab</th><th>Tests</th></tr>
+        <tr><td>March 6, 2026</td><td>Orange Health Labs, Mumbai</td><td>Comprehensive panel (30 tests, fasting, Day 2)</td></tr>
+        <tr><td>May 9, 2025</td><td>Tata 1MG, Mumbai</td><td>Baseline (lipids, thyroid, B12, D, CBC, liver, kidney)</td></tr>
+        <tr><td>December 2024</td><td>—</td><td>AMH only (0.80 ng/mL)</td></tr>
+      </table>
     </div>
   </div>
 
