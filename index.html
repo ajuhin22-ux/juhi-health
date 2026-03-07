@@ -137,13 +137,31 @@
   .workout-day { font-weight: 700; color: var(--accent); }
   .exercise-note { font-size: 0.85em; color: #718096; font-style: italic; }
 
+  /* Make tables scrollable on all screens */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 8px 0; }
+  .table-wrap table { margin: 0; }
+
   @media (max-width: 600px) {
-    .container { padding: 10px; }
-    .header h1 { font-size: 1.3em; }
-    .main-tab { padding: 10px 16px; font-size: 0.9em; }
-    table { font-size: 0.78em; }
-    th, td { padding: 5px 5px; }
-    .sub-tab { font-size: 0.75em; padding: 4px 8px; }
+    .container { padding: 6px; }
+    .header { padding: 16px 14px; border-radius: 8px; margin-bottom: 12px; }
+    .header h1 { font-size: 1.2em; }
+    .header p { font-size: 0.8em; }
+    .main-tab { padding: 8px 14px; font-size: 0.85em; }
+    .main-panel { padding: 10px; border-radius: 0 8px 8px 8px; }
+    .sub-tabs { gap: 4px; margin-bottom: 12px; padding-bottom: 8px; }
+    .sub-tab { font-size: 0.72em; padding: 4px 8px; border-radius: 12px; }
+    .card { padding: 12px; border-radius: 8px; }
+    .card h2 { font-size: 1.05em; }
+    .card h3 { font-size: 0.9em; }
+    table { font-size: 0.73em; min-width: 400px; }
+    th, td { padding: 4px 5px; }
+    .alert-red, .alert-green, .alert-blue, .alert-orange, .alert-neutral { padding: 8px 10px; font-size: 0.85em; }
+    ul, ol { padding-left: 16px; }
+    li { font-size: 0.9em; }
+    .pill { font-size: 0.68em; padding: 2px 6px; }
+    /* Quick stat badges */
+    .main-panel > div:first-child { gap: 6px !important; font-size: 0.78em !important; }
+    .main-panel > div:first-child > div { padding: 4px 8px !important; }
   }
 
   @media print {
@@ -1751,6 +1769,16 @@ function switchSub(main, sub) {
   event.target.classList.add('active');
   document.getElementById(main + '-' + sub).classList.add('active');
 }
+
+// Auto-wrap all tables for mobile scroll
+document.querySelectorAll('.card table').forEach(function(t) {
+  if (!t.parentElement.classList.contains('table-wrap')) {
+    var wrap = document.createElement('div');
+    wrap.className = 'table-wrap';
+    t.parentNode.insertBefore(wrap, t);
+    wrap.appendChild(t);
+  }
+});
 
 (async function() {
   const container = document.getElementById('food-log-entries');
