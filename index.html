@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juhi Shah — Health & Fertility Dashboard</title>
+<style>
+  :root {
+    --primary: #1a365d;
+    --accent: #2c5282;
+    --green: #276749;
+    --red: #c53030;
+    --orange: #c05621;
+    --bg: #f7fafc;
+    --card-bg: #ffffff;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: #1a1a1a;
+    line-height: 1.6;
+    padding: 0;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 16px; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1a365d, #2c5282);
+    color: white;
+    padding: 24px 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+  .header h1 { font-size: 1.8em; margin-bottom: 4px; }
+  .header p { opacity: 0.85; font-size: 0.95em; }
+  .header .stats {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px;
+  }
+  .header .stat {
+    background: rgba(255,255,255,0.15);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.85em;
+  }
+  .header .stat strong { display: block; font-size: 1.1em; }
+
+  /* Navigation */
+  .nav {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 20px;
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg); padding: 10px 0;
+  }
+  .nav a {
+    background: var(--card-bg); border: 1px solid var(--border);
+    padding: 6px 14px; border-radius: 20px;
+    text-decoration: none; color: var(--accent);
+    font-size: 0.85em; font-weight: 500;
+    transition: all 0.2s;
+  }
+  .nav a:hover { background: var(--accent); color: white; }
+
+  /* Cards */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .card h2 {
+    color: var(--primary);
+    font-size: 1.25em;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #bee3f8;
+  }
+  .card h3 { color: var(--accent); font-size: 1.05em; margin: 14px 0 8px; }
+  .card h4 { color: #4a5568; font-size: 0.95em; margin: 10px 0 6px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.88em; }
+  th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: #edf2f7; font-weight: 600; color: #2d3748; }
+  .high { color: var(--red); font-weight: 700; }
+  .good { color: var(--green); font-weight: 600; }
+  .watch { color: var(--orange); font-weight: 600; }
+
+  /* Alert boxes */
+  .alert-red {
+    background: #fff5f5; border-left: 4px solid var(--red);
+    padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 10px 0;
+  }
+  .alert-green {
+    background: #f0fff4; border-left: 4px solid var(--green);
+    padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 10px 0;
+  }
+  .alert-blue {
+    background: #ebf8ff; border-left: 4px solid #3182ce;
+    padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 10px 0;
+  }
+  .alert-orange {
+    background: #fffaf0; border-left: 4px solid var(--orange);
+    padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 10px 0;
+  }
+
+  /* Lists */
+  ul, ol { padding-left: 20px; margin: 6px 0; }
+  li { margin-bottom: 4px; }
+
+  /* Food log section */
+  .food-log-entry {
+    background: #f7fafc; border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px; margin: 8px 0;
+  }
+  .food-log-entry .date { font-weight: 700; color: var(--accent); }
+  .food-log-entry .verdict-good { color: var(--green); font-weight: 600; }
+  .food-log-entry .verdict-bad { color: var(--red); font-weight: 600; }
+
+  /* Supplement pill style */
+  .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.78em;
+    font-weight: 600;
+  }
+  .pill-active { background: #c6f6d5; color: #276749; }
+  .pill-start { background: #fed7d7; color: #c53030; }
+  .pill-irregular { background: #fefcbf; color: #975a16; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .container { padding: 10px; }
+    .header h1 { font-size: 1.4em; }
+    .header .stats { flex-direction: column; }
+    table { font-size: 0.8em; }
+    th, td { padding: 5px 6px; }
+  }
+
+  /* Workout table */
+  .workout-day { font-weight: 700; color: var(--accent); }
+  .exercise-note { font-size: 0.85em; color: #718096; font-style: italic; }
+
+  /* Print */
+  @media print {
+    .nav { display: none; }
+    body { font-size: 10pt; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Juhi Shah — Health Dashboard</h1>
+  <p>Pre-Conception Optimization | Target: July 2026</p>
+  <div class="stats">
+    <div class="stat"><strong>31 yrs</strong>Age</div>
+    <div class="stat"><strong>87 kg</strong>Weight (target 60)</div>
+    <div class="stat"><strong>0.80</strong>AMH (low)</div>
+    <div class="stat"><strong>40.4</strong>Prolactin (high)</div>
+    <div class="stat"><strong>12.7</strong>hsCRP (high)</div>
+    <div class="stat"><strong>25.4</strong>Vit D (low)</div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav">
+  <a href="#blood">Blood Work</a>
+  <a href="#supplements">Supplements</a>
+  <a href="#products">My Products</a>
+  <a href="#workout">Workout Plan</a>
+  <a href="#food-avoid">Foods to Avoid</a>
+  <a href="#food-eat">Foods to Eat</a>
+  <a href="#daily-routine">Daily Routine</a>
+  <a href="#cycle">Cycle Data</a>
+  <a href="#inflammation">Inflammation</a>
+  <a href="#sneezing">Sneezing & Nose</a>
+  <a href="#clothing">Clothing & Hormones</a>
+  <a href="#experts">Experts to Follow</a>
+  <a href="#food-log">Food Log</a>
+  <a href="#piles">Piles Update</a>
+</div>
+
+<!-- ============ BLOOD WORK ============ -->
+<div class="card" id="blood">
+  <h2>Blood Work Summary (March 6, 2026 — Day 2 of Period)</h2>
+  <p style="font-size:0.85em; color:#718096;">Compared with May 9, 2025 baseline. Pending: Cortisol AM, DHEA-S (due March 9)</p>
+
+  <h3>Critical Findings</h3>
+  <table>
+    <tr><th>Marker</th><th>May '25</th><th>Mar '26</th><th>Ref</th><th>Status</th></tr>
+    <tr><td>Prolactin</td><td class="good">12.33</td><td class="high">40.4 ng/mL</td><td>2.6-31.9</td><td class="high">TRIPLED — blocks ovulation</td></tr>
+    <tr><td>hsCRP</td><td>—</td><td class="high">12.7 mg/L</td><td>&lt;3</td><td class="high">Active inflammation</td></tr>
+    <tr><td>CRP</td><td>—</td><td class="high">16.4 mg/L</td><td>&lt;10</td><td class="high">HIGH</td></tr>
+    <tr><td>ESR</td><td>—</td><td class="high">31 mm/h</td><td>0-20</td><td class="high">HIGH</td></tr>
+    <tr><td>WBC</td><td class="good">8,750</td><td class="high">11,480</td><td>4K-10K</td><td class="high">+31%</td></tr>
+    <tr><td>Vitamin D</td><td class="good">45.7</td><td class="high">25.4 ng/mL</td><td>30-100</td><td class="high">Crashed -44%</td></tr>
+    <tr><td>AST</td><td class="watch">39</td><td class="high">53 U/L</td><td>14-36</td><td class="watch">Inflammation + exercise</td></tr>
+    <tr><td>HDL</td><td class="good">51</td><td class="high">42 mg/dL</td><td>&gt;50</td><td class="high">Dropped -18%</td></tr>
+    <tr><td>HOMA-IR</td><td>—</td><td class="watch">1.9</td><td>0.7-2.0</td><td class="watch">Borderline IR</td></tr>
+    <tr><td>Fasting Insulin</td><td>—</td><td class="watch">15.3</td><td>Optimal &lt;10</td><td class="watch">Elevated</td></tr>
+    <tr><td>LH:FSH</td><td>—</td><td class="watch">0.46</td><td>1-2</td><td class="watch">Inverted</td></tr>
+  </table>
+
+  <h3>Good News</h3>
+  <table>
+    <tr><th>Marker</th><th>May '25</th><th>Mar '26</th><th>Status</th></tr>
+    <tr><td>B12</td><td>345</td><td class="good">658 pg/mL</td><td class="good">Nearly doubled (diet!)</td></tr>
+    <tr><td>HbA1c</td><td>5.1%</td><td class="good">5.0%</td><td class="good">Stable, normal</td></tr>
+    <tr><td>TSH</td><td>3.05</td><td class="good">2.29</td><td class="good">Now &lt;2.5 target</td></tr>
+    <tr><td>Cholesterol</td><td>196</td><td class="good">176</td><td class="good">Improved</td></tr>
+    <tr><td>Kidney</td><td colspan="3" class="good">All normal</td></tr>
+  </table>
+
+  <div class="alert-red">
+    <strong>Root Cause:</strong> Severe stress Jan-Feb 2026 (brother's TB diagnosis + family bereavement) is the most likely acute trigger. This compounds with: visceral adiposity (BMI ~32.7), no gall bladder (bile/absorption issues), chronic anxiety, and 2-month sedentary period. Prolactin was NORMAL 10 months ago.
+  </div>
+</div>
+
+<!-- ============ SUPPLEMENTS ============ -->
+<div class="card" id="supplements">
+  <h2>Supplement Protocol — Doctor Approved Brands</h2>
+
+  <div class="alert-orange">
+    <strong>Rule:</strong> Take ALL fat-soluble supplements (D3, Omega-3, CoQ10) with your fattiest meal + ox bile for absorption. You have no gall bladder — absorption is compromised without bile support.
+  </div>
+
+  <table>
+    <tr><th>Supplement</th><th>Brand (India)</th><th>Dose</th><th>When</th><th>Status</th></tr>
+    <tr>
+      <td><strong>Folic Acid</strong></td>
+      <td>Any pharma (you're taking it)</td>
+      <td>800 mcg</td>
+      <td>Morning</td>
+      <td><span class="pill pill-active">ACTIVE</span></td>
+    </tr>
+    <tr>
+      <td><strong>Vitamin D3 60K</strong></td>
+      <td>Uprise-D3 60K (Alkem) — you have this</td>
+      <td>60,000 IU / week</td>
+      <td>Weekly with fattiest meal</td>
+      <td><span class="pill pill-start">MAKE CONSISTENT</span></td>
+    </tr>
+    <tr>
+      <td><strong>Omega-3</strong></td>
+      <td>Muscle Nectar Triple Strength — you have this (husband's). 1 cap = 1500mg EPA+DHA, TG form (good)</td>
+      <td>1 capsule/day (1500mg EPA+DHA)</td>
+      <td>With lunch + fat</td>
+      <td><span class="pill pill-start">MAKE CONSISTENT</span></td>
+    </tr>
+    <tr>
+      <td><strong>Ox Bile</strong></td>
+      <td>NOW Foods Super Enzymes (Amazon India) or Nutricost Ox Bile 125mg</td>
+      <td>125-500mg</td>
+      <td>Start of meals with fat</td>
+      <td><span class="pill pill-start">BUY & START</span></td>
+    </tr>
+    <tr>
+      <td><strong>CoQ LC</strong> (CoQ10 + L-Carnitine + Zinc)</td>
+      <td>CoQ LC by UNS (Universal NutriScience) — your gynac friend prescribed this! Contains Ubiquinol Acetate + L-Carnitine L-Tartrate + Astaxanthin + Lycopene + Zinc</td>
+      <td>1 tablet/day</td>
+      <td>Morning with food</td>
+      <td><span class="pill pill-start">BUY & START</span></td>
+    </tr>
+    <tr>
+      <td><strong>Weltive Q10 Plus</strong></td>
+      <td>Weltive Q10 Plus by Leeford — your gynac friend also prescribed this! Contains Levocarnitine + Omega-3 + CoQ10 + Grape Seed Extract + Multivitamin + Multimineral</td>
+      <td>1 softgel/day</td>
+      <td>With lunch</td>
+      <td><span class="pill pill-start">BUY & START</span></td>
+    </tr>
+    <tr>
+      <td><strong>Vitamin B6 (P5P)</strong></td>
+      <td>HealthVit P5P 50mg or Nature's Bounty B6</td>
+      <td>50mg</td>
+      <td>Morning</td>
+      <td><span class="pill pill-start">BUY & START</span></td>
+    </tr>
+    <tr>
+      <td><strong>Magnesium Glycinate</strong></td>
+      <td>Nutrabay Pure Magnesium Glycinate or NOW Foods Magnesium Glycinate</td>
+      <td>400mg</td>
+      <td>Before bed</td>
+      <td><span class="pill pill-start">BUY & START</span></td>
+    </tr>
+    <tr>
+      <td><strong>Myo-Inositol</strong></td>
+      <td>Veera PCOS Support — you have 5-6 packets! Contains Myo-inositol + D3 + B12 + Folate + Zinc + B6 + Chromium</td>
+      <td>1 sachet/day</td>
+      <td>Morning in water</td>
+      <td><span class="pill pill-start">START NOW (you have it)</span></td>
+    </tr>
+  </table>
+
+  <div class="alert-blue">
+    <strong>Important overlap check:</strong> The CoQ LC, Weltive Q10 Plus, and Veera PCOS Support all contain overlapping ingredients. <strong>Do NOT take all three simultaneously</strong> without checking with your doctor. Pick ONE of CoQ LC or Weltive Q10 Plus (they're similar — CoQ LC is more targeted for egg quality). The Veera PCOS Support is fine alongside either as it's primarily myo-inositol. Your doctor should confirm the final combination.
+  </div>
+
+  <h3>What natural foods can replace supplements?</h3>
+  <table>
+    <tr><th>Nutrient</th><th>Food Sources (Gall Bladder Safe)</th><th>Still need supplement?</th></tr>
+    <tr><td>B6</td><td>Bananas, chickpeas, potatoes, sunflower seeds</td><td>Yes — food alone won't hit 50mg for prolactin support</td></tr>
+    <tr><td>Zinc</td><td>Pumpkin seeds (1 tbsp = 2mg), chickpeas, lentils, sesame seeds</td><td>Yes — vegetarian diet makes it hard to get 25mg from food</td></tr>
+    <tr><td>Magnesium</td><td>Spinach, pumpkin seeds, black beans, bananas, dark chocolate (small piece)</td><td>Helpful but supplement ensures adequate dose</td></tr>
+    <tr><td>Omega-3</td><td>Flaxseeds (1 tbsp ground), chia seeds, walnuts (4-5 max)</td><td>Yes — plant omega-3 (ALA) converts poorly to EPA/DHA. Fish oil needed.</td></tr>
+    <tr><td>Folate</td><td>Spinach, methi, lentils, beetroot</td><td>Continue folic acid supplement — critical for neural tube</td></tr>
+    <tr><td>CoQ10</td><td>Very hard to get from food (mainly in organ meats, sardines)</td><td>Yes — must supplement</td></tr>
+    <tr><td>L-Carnitine</td><td>Mostly in red meat. Very low in vegetarian foods.</td><td>Yes — must supplement on vegetarian diet</td></tr>
+    <tr><td>Vitamin D</td><td>Sunlight (15-20 min morning), mushrooms (very small amounts)</td><td>Yes — supplement essential especially with absorption issues</td></tr>
+  </table>
+</div>
+
+<!-- ============ MY PRODUCTS ============ -->
+<div class="card" id="products">
+  <h2>My Products — Assessment</h2>
+
+  <h3>The Whole Truth Pista Badaam Plant Protein</h3>
+  <table>
+    <tr><th>Per Serving (38g)</th><th>Value</th><th>Verdict</th></tr>
+    <tr><td>Protein</td><td class="good">24g</td><td class="good">Excellent</td></tr>
+    <tr><td>Total Fat</td><td class="high">5.9g</td><td class="high">AT YOUR LIMIT (max 5g/meal)</td></tr>
+    <tr><td>Saturated Fat</td><td>0.7g</td><td class="good">Low</td></tr>
+    <tr><td>MUFA + PUFA</td><td>5.2g</td><td>Mostly healthy fats (from pista/badaam)</td></tr>
+    <tr><td>Added Sugar</td><td class="good">0.0g</td><td class="good">None</td></tr>
+    <tr><td>Total Sugar</td><td>1.8g</td><td class="good">Natural (dates)</td></tr>
+    <tr><td>Fiber</td><td>1.6g</td><td>OK</td></tr>
+    <tr><td>Sodium</td><td class="watch">235mg</td><td class="watch">Somewhat high</td></tr>
+  </table>
+  <p><strong>Ingredients:</strong> Golden Pea Protein Isolate (50.4%), Brown Rice Protein Isolate (21.6%), Pistachios (10%), Almonds (10%), Date Powder (4.6%), Cardamom (1.5%), Monk Fruit (1.2%), Bromelain (0.4%), Curcumin (0.3%).</p>
+
+  <div class="alert-orange">
+    <strong>Verdict:</strong> Good protein quality with clean ingredients. Curcumin and bromelain are bonus anti-inflammatory additions. <strong>BUT the fat is 5.9g/serving which is AT your per-meal fat limit.</strong> If you use this shake, keep the rest of that meal very low fat. Better option: mix with water only (not milk/almond milk) to avoid adding more fat. The 10% pistachios and 10% almonds are responsible for the fat.
+  </div>
+
+  <h3>Veera Spark — Plant Protein with Ashwagandha</h3>
+  <table>
+    <tr><th>Per Serving (35g)</th><th>Value</th><th>Verdict</th></tr>
+    <tr><td>Protein</td><td>21g (per back label ~70.35% protein)</td><td class="good">Good</td></tr>
+    <tr><td>Total Fat</td><td class="good">2.4g</td><td class="good">MUCH better for you</td></tr>
+    <tr><td>Saturated Fat</td><td>0.53g</td><td class="good">Low</td></tr>
+    <tr><td>Ashwagandha Extract</td><td>857mg / 300mg per serve</td><td class="good">Bonus: cortisol reduction</td></tr>
+    <tr><td>Digestive Enzyme</td><td>150mg / 53mg per serve</td><td class="good">Helps digestion (no gall bladder)</td></tr>
+    <tr><td>Added Sugar</td><td class="good">0.0g</td><td class="good">Uses Stevia</td></tr>
+    <tr><td>Calcium</td><td>94mg / 33mg</td><td>Good</td></tr>
+  </table>
+  <p><strong>Ingredients:</strong> Pea Protein Isolate, Brown Rice Protein Isolate, Natural Cocoa Powder, Ashwagandha Extract, Digestive Enzyme Blend (Amylase, Protease, Glucoamylase, Alpha Galactosidase, Cellulase, Lipase, Hemicellulase, Diastase, Invertase, Papain, Phytase), Natural Stevia.</p>
+
+  <div class="alert-green">
+    <strong>Verdict: THIS IS YOUR BETTER OPTION.</strong> Lower fat (2.4g vs 5.9g), includes Ashwagandha (exactly what you need for cortisol/prolactin), has digestive enzymes (helps your post-cholecystectomy digestion), and no added sugar. You have 5-6 packets of this — <strong>USE THEM.</strong> This is from Veera Health which was founded specifically for women's hormonal health. Use this as your daily protein instead of the Whole Truth when possible.
+  </div>
+
+  <h3>Veera PCOS Support</h3>
+  <p>Contains: Myo-inositol (scientifically studied dose) + Vitamin D3 + B12 + Folate + Zinc + B6 + Chromium. Orange flavour sachets.</p>
+  <div class="alert-green">
+    <strong>Verdict: START THIS NOW.</strong> This covers multiple supplements you need in one sachet — myo-inositol (insulin + egg quality), plus B12, D3, Folate, Zinc, B6 (prolactin support). Since you already have these packets, start taking 1 sachet/day immediately. This product was specifically formulated for PCOS/PCOD with insulin regulation and fertility support.
+  </div>
+
+  <h3>CoQ LC (UNS) — Gynac Friend Prescribed</h3>
+  <p>Contains: Ubiquinol Acetate (active CoQ10) + L-Carnitine L-Tartrate + Astaxanthin + Lycopene + Zinc. Rs 1,184 for 10 tablets.</p>
+  <div class="alert-green">
+    <strong>Verdict: EXCELLENT prescription.</strong> This is a fertility-specific combo — Ubiquinol (better absorbed than regular CoQ10) + L-Carnitine (both Huberman-recommended for egg quality) + powerful antioxidants (Astaxanthin, Lycopene) + Zinc. This single tablet covers CoQ10 + L-Carnitine + Zinc. <strong>Your gynac friend knows what she's doing.</strong> Buy this.
+  </div>
+
+  <h3>Weltive Q10 Plus (Leeford) — Gynac Friend Prescribed</h3>
+  <p>Contains: Levocarnitine + Omega-3 + CoQ10 + Grape Seed Extract + Multivitamin + Multimineral + Antioxidants.</p>
+  <div class="alert-blue">
+    <strong>Verdict:</strong> This is a broader multivitamin with fertility ingredients. Overlaps significantly with CoQ LC. <strong>Pick ONE of CoQ LC or Weltive Q10 Plus, not both.</strong> CoQ LC is more targeted for egg quality. Weltive is a more general multivitamin approach. Ask your gynac friend which she prefers for your specific situation.
+  </div>
+</div>
+
+<!-- ============ WORKOUT ============ -->
+<div class="card" id="workout">
+  <h2>Workout Plan — Gradual Return</h2>
+
+  <div class="alert-orange">
+    <strong>Context:</strong> You were sedentary Jan-Feb 2026. Did 2-3 heavy sessions early March. You have a gym membership with steam and cold shower access. Husband runs mornings. You both play pickleball 1-2x/week. Plantar fasciitis (right foot). Goal: weight loss (87 to 60), lower inflammation, improve HDL, reduce cortisol/prolactin.
+  </div>
+
+  <h3>Week 1-2: Restart Phase (Gentle)</h3>
+  <table>
+    <tr><th>Day</th><th>Activity</th><th>Duration</th><th>Notes</th></tr>
+    <tr><td class="workout-day">Monday</td><td>Brisk Walk (Zone 2)</td><td>30 min</td><td>With husband's morning run — you walk while he runs. Heart rate 110-130.</td></tr>
+    <tr><td class="workout-day">Tuesday</td><td>Yoga / Stretching</td><td>20-30 min</td><td>YouTube: "Yoga with Adriene" fertility yoga. Directly lowers cortisol.</td></tr>
+    <tr><td class="workout-day">Wednesday</td><td>Gym — Light Strength</td><td>30 min</td><td>Full body. Light weights, high reps (15). Squats, lunges, rows, shoulder press.</td></tr>
+    <tr><td class="workout-day">Thursday</td><td>Pickleball with husband</td><td>45-60 min</td><td>Fun cardio. Don't overdo it — moderate intensity.</td></tr>
+    <tr><td class="workout-day">Friday</td><td>Brisk Walk or Cycling</td><td>30 min</td><td>Zone 2 again. Elliptical if plantar fasciitis flares.</td></tr>
+    <tr><td class="workout-day">Saturday</td><td>Gym — Light Strength</td><td>30 min</td><td>Same as Wednesday but different muscle focus.</td></tr>
+    <tr><td class="workout-day">Sunday</td><td>Rest / Gentle Walk</td><td>—</td><td>Active recovery. Steam room is great today.</td></tr>
+  </table>
+
+  <h3>Week 3-6: Building Phase</h3>
+  <table>
+    <tr><th>Day</th><th>Activity</th><th>Duration</th><th>Notes</th></tr>
+    <tr><td class="workout-day">Monday</td><td>Zone 2 Cardio (Walk/Cycle/Elliptical)</td><td>35-40 min</td><td>Fat burning zone. Can talk but slightly breathless.</td></tr>
+    <tr><td class="workout-day">Tuesday</td><td>Yoga</td><td>30 min</td><td>Add pranayama (breathing exercises) — 10 min. Directly addresses anxiety.</td></tr>
+    <tr><td class="workout-day">Wednesday</td><td>Gym — Upper Body + Core</td><td>40 min</td><td>Moderate weights now. Rows, lat pulldown, shoulder press, planks.</td></tr>
+    <tr><td class="workout-day">Thursday</td><td>Pickleball or Zone 2 Cardio</td><td>45 min</td><td>Alternate weeks.</td></tr>
+    <tr><td class="workout-day">Friday</td><td>Gym — Lower Body</td><td>40 min</td><td>Squats, lunges, leg press, hip thrusts, calf raises (careful with plantar fasciitis).</td></tr>
+    <tr><td class="workout-day">Saturday</td><td>Zone 2 Cardio + Yoga Cooldown</td><td>40 min total</td><td>25 min cardio + 15 min stretch/yoga.</td></tr>
+    <tr><td class="workout-day">Sunday</td><td>Rest</td><td>—</td><td>Steam + cold shower for recovery and mood.</td></tr>
+  </table>
+
+  <h3>Week 7+: Maintenance Phase</h3>
+  <table>
+    <tr><th>Day</th><th>Activity</th><th>Duration</th></tr>
+    <tr><td class="workout-day">Mon/Wed/Fri</td><td>Gym: Alternate Upper/Lower + 10 min Zone 2 warmup</td><td>45-50 min</td></tr>
+    <tr><td class="workout-day">Tue/Thu</td><td>Zone 2 Cardio (walk/cycle/swim) or Pickleball</td><td>35-40 min</td></tr>
+    <tr><td class="workout-day">Sat</td><td>Yoga + Pranayama</td><td>30 min</td></tr>
+    <tr><td class="workout-day">Sun</td><td>Rest / Light walk</td><td>—</td></tr>
+  </table>
+
+  <h3>Steam & Cold Shower Protocol</h3>
+  <div class="alert-blue">
+    <strong>You have access to steam and cold showers — use them.</strong><br>
+    <strong>Steam room:</strong> 10-15 min post-workout. Helps recovery, relaxation, circulation. Good for anxiety/stress reduction.<br>
+    <strong>Cold shower:</strong> End your shower with 1-2 min cold water. Huberman-endorsed for dopamine boost (+250-300% lasting 2-3 hours), reduces inflammation, improves mood. Start with 30 seconds and build up. <strong>Caution:</strong> Not on days where you're exhausted — it spikes cortisol temporarily, and your cortisol is likely already high. Use it on workout days when you're feeling good, not when you're stressed.
+  </div>
+
+  <p class="exercise-note"><strong>Plantar fasciitis note:</strong> Avoid running on hard surfaces. Prefer cycling, elliptical, or swimming for cardio. Wear supportive shoes. Stretch calves and plantar fascia before and after exercise. Night splint may help.</p>
+</div>
+
+<!-- ============ FOODS TO AVOID ============ -->
+<div class="card" id="food-avoid">
+  <h2>Foods to AVOID (Evidence-Based)</h2>
+  <p style="font-size:0.85em; color:#718096;">Sources: Andrew Huberman, Dr. Natalie Crawford, Dr. Sara Gottfried, Harvard Nurses' Health Study</p>
+
+  <table>
+    <tr><th>AVOID</th><th>Why</th><th>Your Specific Risk</th></tr>
+    <tr><td class="high">Added Sugar (chai with sugar, mithai, biscuits, packaged juice)</td><td>Spikes insulin, increases inflammation, damages egg quality, raises miscarriage risk</td><td>Fasting insulin 15.3, HOMA-IR 1.9</td></tr>
+    <tr><td class="high">Artificial Sweeteners (aspartame, sucralose)</td><td>Gut microbiome disruption, inflammatory</td><td>Post-cholecystectomy gut sensitivity</td></tr>
+    <tr><td class="high">Fried Foods (samosa, pakora, puri, bhajiya)</td><td>Inflammatory + no gall bladder = severe GI distress</td><td>Already off-limits. Enforce strictly.</td></tr>
+    <tr><td class="high">Refined Carbs (maida, white bread, naan, white rice in excess)</td><td>Same insulin spike as sugar. Inflammatory.</td><td>Insulin resistance borderline</td></tr>
+    <tr><td class="high">Processed/Packaged Foods (chips, instant noodles, ready meals)</td><td>Hidden sugar, trans fats, preservatives, inflammatory</td><td>CRP 16.4</td></tr>
+    <tr><td class="high">Trans Fats (bakery items, commercial biscuits, margarine, vanaspati)</td><td>Directly inflammatory, insulin resistance, fertility damage</td><td>Double risk: inflammation + no gall bladder</td></tr>
+    <tr><td class="watch">Excess Caffeine (&gt;1 cup/day)</td><td>Cortisol spike, can affect egg quality</td><td>High stress, cortisol likely elevated. Coffee makes you constipated — avoid.</td></tr>
+    <tr><td class="watch">Alcohol</td><td>Liver already stressed (AST 53), reduces egg quality</td><td>Ideally zero pre-conception</td></tr>
+    <tr><td class="watch">High-fat dairy (cream, paneer &gt;50g, full-fat cheese)</td><td>No gall bladder = can't digest</td><td>Limit paneer to 50g, prefer low-fat curd</td></tr>
+    <tr><td class="watch">Excess soy (beyond moderate)</td><td>Phytoestrogens in large amounts may affect hormones</td><td>Moderate amounts fine — don't overdo</td></tr>
+  </table>
+
+  <div class="alert-red">
+    <strong>Your morning tea:</strong> You said you can skip it completely. Do it. Your husband's right — it was a sugar shot. If you need a warm morning drink, try: warm water with lemon, green tea (no sugar), or herbal tea (tulsi/ginger). Coffee makes you constipated — avoid it too.
+  </div>
+</div>
+
+<!-- ============ FOODS TO EAT ============ -->
+<div class="card" id="food-eat">
+  <h2>Foods to EAT MORE (Fertility + Anti-Inflammatory + Gall Bladder Safe)</h2>
+
+  <table>
+    <tr><th>Food</th><th>Why</th><th>How Much / How</th></tr>
+    <tr><td class="good">Lentils / Dal (all types)</td><td>Protein + folate + fiber + low fat. Your BEST protein source.</td><td>Every meal if possible. 1-2 katori.</td></tr>
+    <tr><td class="good">Veera Spark protein (Ashwagandha)</td><td>21g protein, 2.4g fat, has Ashwagandha + digestive enzymes</td><td>1 sachet/day — morning shake with water</td></tr>
+    <tr><td class="good">Spinach / Palak / Methi</td><td>Folate, iron, anti-inflammatory, low fat</td><td>Daily. Lightly sauteed in minimal oil.</td></tr>
+    <tr><td class="good">Berries (blueberries, strawberries)</td><td>Antioxidants — protect eggs from oxidative stress</td><td>Handful daily as snack</td></tr>
+    <tr><td class="good">Turmeric + Black Pepper</td><td>Curcumin is potent anti-inflammatory (your Whole Truth has this!)</td><td>Add to dal, sabzi, golden milk (with low-fat milk)</td></tr>
+    <tr><td class="good">Oats / Dalia / Jowar / Bajra</td><td>Whole grains: fiber, slow carbs, insulin-friendly</td><td>Breakfast base. Not instant oats — steel cut or rolled.</td></tr>
+    <tr><td class="good">Flaxseeds (ground)</td><td>Plant omega-3, lignans for hormone balance</td><td>1 tbsp ground daily — add to curd or shake</td></tr>
+    <tr><td class="good">Pumpkin Seeds</td><td>Zinc (prolactin), magnesium, protein</td><td>1 tbsp daily as snack</td></tr>
+    <tr><td class="good">Low-fat Curd / Yogurt</td><td>Probiotics for gut, calcium, protein</td><td>1 bowl daily. Homemade preferred.</td></tr>
+    <tr><td class="good">Chickpeas / Chole (without excess oil)</td><td>Protein + fiber + B6 + zinc</td><td>3-4 times/week. Boiled > fried.</td></tr>
+    <tr><td class="good">Beetroot</td><td>Folate, nitric oxide (blood flow to uterus), anti-inflammatory</td><td>2-3 times/week. Juice or salad.</td></tr>
+    <tr><td class="good">Sweet Potato / Shakarkandi</td><td>Complex carb, vitamin A, fiber, low GI</td><td>Better than white potato. Boiled/roasted.</td></tr>
+    <tr><td class="good">Ginger + Amla</td><td>Anti-inflammatory, Vitamin C, immunity</td><td>Ginger in tea/food. Amla daily.</td></tr>
+    <tr><td>Walnuts (limited)</td><td>Omega-3 but high fat</td><td>Max 4-5 pieces/day due to fat content</td></tr>
+  </table>
+</div>
+
+<!-- ============ DAILY ROUTINE ============ -->
+<div class="card" id="daily-routine">
+  <h2>Daily Routine (Huberman + Crawford Inspired)</h2>
+
+  <h3>Morning (6:30-8:30 AM)</h3>
+  <ol>
+    <li><strong>Wake up</strong> — Glass of water (hydrate first)</li>
+    <li><strong>10-15 min sunlight</strong> — Step outside or near window. Sets circadian rhythm + Vitamin D</li>
+    <li><strong>Protein shake</strong> — Veera Spark (21g protein, has Ashwagandha) in water. Protein FIRST, not sugar.</li>
+    <li><strong>Morning supplements:</strong> Folic Acid + B6 (P5P) + Veera PCOS Support sachet (in water)</li>
+    <li><strong>Warm drink:</strong> Green tea OR ginger-tulsi tea OR warm water with lemon. NO sugar. NO coffee.</li>
+    <li><strong>Exercise</strong> (as per workout plan)</li>
+  </ol>
+
+  <h3>Mid-Morning Snack (10:30-11 AM)</h3>
+  <ul>
+    <li>Handful of berries + 1 tbsp pumpkin seeds, OR</li>
+    <li>Small bowl of sprouts + lemon, OR</li>
+    <li>1 boiled egg white (if you eat eggs) or 1 glass buttermilk</li>
+  </ul>
+
+  <h3>Lunch (12:30-1:30 PM) — Your Fattiest Meal</h3>
+  <ul>
+    <li>Dal/sabzi + 1-2 roti (whole wheat/jowar) + salad + low-fat curd</li>
+    <li><strong>Supplements with lunch:</strong> Omega-3 (Muscle Nectar) + CoQ LC tablet + Ox Bile</li>
+    <li><strong>Weekly (same day each week):</strong> Vitamin D3 60K capsule with this meal</li>
+    <li>15-30 min walk after lunch (insulin management)</li>
+  </ul>
+
+  <h3>Afternoon Snack (4-5 PM)</h3>
+  <ul>
+    <li>Whole Truth Pista Badaam protein (if needed — watch the 5.9g fat), OR</li>
+    <li>Roasted chana + 4-5 walnuts, OR</li>
+    <li>Apple/pear + 1 tbsp flaxseed</li>
+  </ul>
+
+  <h3>Dinner (7-8 PM — Light)</h3>
+  <ul>
+    <li>Khichdi / dalia / soup + sabzi. Keep it simple, low-fat.</li>
+    <li>Add turmeric + black pepper to everything</li>
+    <li>Finish eating by 8 PM (2.5 hour gap before sleep)</li>
+  </ul>
+
+  <h3>Before Bed (9:30-10:30 PM)</h3>
+  <ol>
+    <li><strong>Magnesium Glycinate 400mg</strong> — helps sleep + anxiety</li>
+    <li>No screens 30 min before sleep (or use night mode)</li>
+    <li>5-10 min deep breathing / meditation (box breathing: 4-4-4-4)</li>
+    <li>Target lights off by 10:30 PM. 7-8 hours sleep minimum.</li>
+  </ol>
+</div>
+
+<!-- ============ CYCLE DATA ============ -->
+<div class="card" id="cycle">
+  <h2>Menstrual Cycle Data (Dec 2024 - Dec 2025)</h2>
+  <p>Source: Period tracking app (11 complete cycles logged)</p>
+
+  <table>
+    <tr><th>Metric</th><th>Value</th><th>Assessment</th></tr>
+    <tr><td>Typical Cycle Length</td><td>30 days</td><td class="good">Normal (25-35 is normal)</td></tr>
+    <tr><td>Cycle Variation</td><td>+/- 2 days</td><td class="good">Very regular</td></tr>
+    <tr><td>Typical Period Length</td><td>5 days</td><td class="good">Normal</td></tr>
+    <tr><td>Period Variation</td><td>+/- 1 day</td><td class="good">Consistent</td></tr>
+  </table>
+
+  <h3>Cycle History (2025)</h3>
+  <table>
+    <tr><th>Period</th><th>Cycle Length</th><th>Period Length</th><th>Flag</th></tr>
+    <tr><td>Dec 4 onwards</td><td>19 days</td><td>5 days</td><td class="high">SHORT — possible anovulatory?</td></tr>
+    <tr><td>Nov 4 - Dec 3</td><td>30 days</td><td>5 days</td><td class="good">Normal</td></tr>
+    <tr><td>Oct 6 - Nov 3</td><td>29 days</td><td>6 days</td><td class="good">Normal</td></tr>
+    <tr><td>Sep 6 - Oct 5</td><td>30 days</td><td>5 days</td><td class="good">Normal</td></tr>
+    <tr><td>Aug 7 - Sep 5</td><td>30 days</td><td>5 days</td><td class="good">Normal</td></tr>
+    <tr><td>Jul 7 - Aug 6</td><td>31 days</td><td>5 days</td><td class="good">Normal</td></tr>
+    <tr><td>Jun 7 - Jul 6</td><td>30 days</td><td>5 days</td><td class="good">Normal</td></tr>
+    <tr><td>May 7 - Jun 6</td><td>31 days</td><td>5 days</td><td class="good">Normal</td></tr>
+    <tr><td>Apr 10 - May 6</td><td>27 days</td><td>4 days</td><td class="watch">Shorter cycle + lighter period</td></tr>
+    <tr><td>Feb 25 - Apr 9</td><td class="high">44 days</td><td>6 days</td><td class="high">VERY LONG — likely anovulatory cycle</td></tr>
+    <tr><td>Jan 29 - Feb 24</td><td>27 days</td><td>5 days</td><td class="watch">Slightly short</td></tr>
+    <tr><td>Dec 30 - Jan 28</td><td>30 days</td><td>5 days</td><td class="good">Normal</td></tr>
+  </table>
+
+  <div class="alert-red">
+    <strong>Key findings:</strong> The 44-day cycle (Feb 25 - Apr 9, 2025) was likely anovulatory — no egg was released that month. The 19-day cycle (Dec 4) is also abnormally short. Both suggest occasional ovulatory dysfunction, which is consistent with the elevated prolactin blocking ovulation intermittently. <strong>Day 21 Progesterone test is essential</strong> to confirm whether you're actually ovulating each cycle.
+  </div>
+</div>
+
+<!-- ============ INFLAMMATION ============ -->
+<div class="card" id="inflammation">
+  <h2>Inflammation — Should You Do Something?</h2>
+
+  <div class="alert-red">
+    <strong>Yes, you absolutely should.</strong> Even though you don't "feel" anything specific, your inflammation markers are screaming. hsCRP at 12.7 is 4x the high-risk threshold. This isn't the kind of inflammation that causes obvious pain — it's silent, systemic, and directly attacking your fertility.
+  </div>
+
+  <h3>What silent inflammation is doing right now:</h3>
+  <ul>
+    <li>Damaging your developing eggs (oxidative stress)</li>
+    <li>Making your uterine lining hostile to implantation</li>
+    <li>Worsening your insulin resistance (HOMA-IR 1.9)</li>
+    <li>Possibly driving the prolactin spike</li>
+    <li>Suppressing your HDL (42, dropped from 51)</li>
+    <li>If you conceive with this inflammation level, miscarriage risk is 2-3x higher</li>
+  </ul>
+
+  <h3>Natural Anti-Inflammation Protocol (No Pharmaceuticals)</h3>
+  <ol>
+    <li><strong>Omega-3 consistently at 1500-2000mg EPA+DHA</strong> — you have Muscle Nectar. Take daily.</li>
+    <li><strong>Turmeric + black pepper daily</strong> — in food, or golden milk with low-fat milk</li>
+    <li><strong>Berries daily</strong> — antioxidant powerhouse</li>
+    <li><strong>Exercise</strong> — Zone 2 cardio is directly anti-inflammatory after the first 2-3 weeks</li>
+    <li><strong>Weight loss</strong> — every kg of visceral fat lost reduces IL-6 and TNF-alpha</li>
+    <li><strong>Stress reduction</strong> — your biggest lever right now. Yoga, breathing, sleep.</li>
+    <li><strong>Eliminate inflammatory foods</strong> — sugar, refined carbs, fried, processed (see foods to avoid)</li>
+    <li><strong>Ox bile</strong> — reduces GI inflammation from bile acid malabsorption</li>
+    <li><strong>Sleep 7-8 hours</strong> — sleep deprivation is directly inflammatory</li>
+    <li><strong>Ground flaxseed daily</strong> — anti-inflammatory omega-3 + lignans</li>
+  </ol>
+
+  <div class="alert-blue">
+    <strong>When to retest:</strong> After 4-6 weeks of consistent anti-inflammatory protocol, retest hsCRP. If it's dropped significantly, the natural approach is working. If it stays above 10, your doctor needs to investigate further (autoimmune, infection source).
+  </div>
+</div>
+
+<!-- ============ SNEEZING & NOSE ============ -->
+<div class="card" id="sneezing">
+  <h2>Chronic Sneezing & Nose Bump</h2>
+
+  <h3>The Sneezing</h3>
+  <p>What you're describing — constant sneezing, worsened in last 2-3 months despite air purifier and keeping house dust-free — sounds like <strong>allergic rhinitis</strong> (hay fever). This is extremely common and your IgE at 83.96 (normal &lt;100) doesn't rule it out — IgE can be normal in localized allergic rhinitis.</p>
+
+  <h3>Possible triggers:</h3>
+  <ul>
+    <li><strong>Dust mites</strong> — the most common indoor allergen. Air purifiers help but mattress/pillow covers are key</li>
+    <li><strong>Mumbai humidity + mold</strong> — check bathroom, AC vents, behind furniture</li>
+    <li><strong>Post-nasal drip from sinusitis</strong> — can be linked to your inflammation picture</li>
+    <li><strong>Stress-induced immune dysregulation</strong> — your immune system is already overactive (WBC 11,480). Allergic reactions worsen when the immune system is in overdrive.</li>
+  </ul>
+
+  <h3>The Nose Bump</h3>
+  <p>A small, very tiny bump at the tip-right of your nose developing over 2-3 months could be:</p>
+  <ul>
+    <li><strong>Nasal vestibular cyst or polyp</strong> — benign, related to chronic inflammation/allergies</li>
+    <li><strong>Small sebaceous cyst</strong> — common, harmless</li>
+    <li><strong>Nasal vestibulitis</strong> — minor infection at nostril entrance from nose-blowing/picking</li>
+    <li><strong>Rhinophyma (very unlikely at your age)</strong></li>
+  </ul>
+
+  <div class="alert-orange">
+    <strong>Action needed:</strong>
+    <ol>
+      <li>Mention BOTH the sneezing and the nose bump to your doctor today (or ENT referral)</li>
+      <li>Ask for: skin prick allergy test to identify specific triggers</li>
+      <li>Consider: antihistamine (Cetirizine/Levocetirizine) + nasal corticosteroid spray (Fluticasone). Both are safe pre-conception.</li>
+      <li>Dust mite covers for mattress and pillows (Amazon India — anti-allergen covers)</li>
+      <li>The chronic sneezing itself is adding to your systemic inflammation — treating it will help your overall picture</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ============ CLOTHING ============ -->
+<div class="card" id="clothing">
+  <h2>Polyester Clothing & Hormones</h2>
+
+  <h3>Is it real?</h3>
+  <p><strong>Yes, there is growing evidence, but context matters.</strong></p>
+
+  <p>A 2024 review of 120+ studies found widespread phthalate contamination in synthetic textiles. Polyester can contain:</p>
+  <ul>
+    <li><strong>BPA (Bisphenol A)</strong> — estrogen-mimicking chemical that can leach onto skin</li>
+    <li><strong>Phthalates</strong> — endocrine disruptors linked to menstrual/ovulatory problems</li>
+    <li><strong>Antimony + PFAS</strong> — used in manufacturing, reproductively toxic</li>
+    <li><strong>Microplastics</strong> — shed from synthetic clothes and carry hormone-disrupting chemicals</li>
+  </ul>
+
+  <h3>How worried should you be?</h3>
+  <p>The evidence is strongest for <strong>underwear and clothing worn directly against skin for long hours</strong> (like your H&M black polyester pants you wear daily). The risk is higher with:</p>
+  <ul>
+    <li>Tight-fitting synthetic clothes (more skin contact + heat)</li>
+    <li>Sweating in synthetic fabrics (heat opens pores, chemicals leach more)</li>
+    <li>Wearing synthetics in the groin/reproductive area</li>
+  </ul>
+
+  <div class="alert-orange">
+    <strong>Practical recommendation (not paranoia, just common sense):</strong>
+    <ol>
+      <li><strong>Underwear:</strong> Switch to 100% cotton. This is the easiest, most impactful change.</li>
+      <li><strong>Daily pants:</strong> When you can, prefer cotton or cotton-blend trousers over pure polyester. You don't need to throw away all your H&M pants — just don't wear the same synthetic pants every day.</li>
+      <li><strong>Gym clothes:</strong> Synthetic is OK for workouts (you sweat it out and shower after). Just don't live in them.</li>
+      <li><strong>Sleep clothes:</strong> 100% cotton. You spend 7-8 hours in them.</li>
+      <li>Wash new clothes before first wear — removes some chemical residues</li>
+    </ol>
+    <p>This is NOT the biggest factor in your health picture. Your inflammation, prolactin, stress, and diet are 10x more impactful. But switching to cotton underwear and sleepwear is an easy win.</p>
+  </div>
+
+  <p style="font-size:0.82em; color:#718096;">Sources: <a href="https://www.theweek.in/news/health/2025/12/18/fact-check-are-polyester-and-nylon-clothes-disrupting-your-hormones-without-you-knowing.html">The Week India Fact Check (2025)</a>, <a href="https://blog.planetcare.org/scientists-made-men-switch-from-polyester-to-cotton-underwear-what-happened-next-will-terrify-every-person-wearing-synthetic-clothes/">PlanetCare Study</a></p>
+</div>
+
+<!-- ============ EXPERTS ============ -->
+<div class="card" id="experts">
+  <h2>Experts to Follow & Consult</h2>
+
+  <h3>Global Leaders (Follow Online)</h3>
+  <table>
+    <tr><th>Expert</th><th>Speciality</th><th>Why Relevant</th><th>Where to Find</th></tr>
+    <tr><td><strong>Dr. Natalie Crawford</strong></td><td>Fertility specialist (double board-certified REI)</td><td>Her book "The Fertility Formula" says inflammation is THE root cause of most infertility. Matches your picture exactly.</td><td>YouTube, Instagram @nataliecrawfordmd, Podcast "As a Woman"</td></tr>
+    <tr><td><strong>Andrew Huberman</strong></td><td>Neuroscience, protocols</td><td>Fertility optimization episode. Supplement protocols. Sleep/stress science.</td><td>Huberman Lab Podcast, YouTube</td></tr>
+    <tr><td><strong>Dr. Sara Gottfried</strong></td><td>Functional medicine, hormones</td><td>Harvard-trained gynecologist. Books on hormone optimization. PCOS/cortisol expertise.</td><td>Books: "The Hormone Cure", "Brain Body Diet"</td></tr>
+    <tr><td><strong>Dr. Mark Hyman</strong></td><td>Functional medicine</td><td>Insulin resistance, inflammation, anti-inflammatory diet. Very relevant to your metabolic picture.</td><td>YouTube, "The Doctor's Farmacy" podcast</td></tr>
+    <tr><td><strong>Dr. Jolene Brighten</strong></td><td>Women's hormones, PCOS</td><td>Post-pill PCOS, prolactin, hormonal balance without pharmaceuticals. Natural approach.</td><td>Instagram, drbrighten.com</td></tr>
+  </table>
+
+  <h3>Mumbai Fertility Doctors (For Your Visits)</h3>
+  <table>
+    <tr><th>Doctor</th><th>Clinic</th><th>Expertise</th></tr>
+    <tr><td><strong>Dr. Nandita Palshetkar</strong></td><td>Bloom IVF</td><td>30+ years. Leading IVF specialist. PCOS, low AMH expertise.</td></tr>
+    <tr><td><strong>Dr. Hrishikesh Pai</strong></td><td>Bloom IVF</td><td>40+ years. Pioneering IVF doctor in India.</td></tr>
+    <tr><td><strong>Dr. Rashmi Saraogi</strong></td><td>Saraogi Hospital</td><td>37+ years. OB-GYN with fertility focus.</td></tr>
+    <tr><td><strong>Apollo Fertility Mumbai</strong></td><td>Multiple locations</td><td>Full team of fertility specialists. Comprehensive testing.</td></tr>
+  </table>
+
+  <div class="alert-blue">
+    <strong>Recommendation:</strong> Start with your family doctor / gynac friend for the immediate issues (prolactin retest, inflammation workup, piles, sneezing). If prolactin stays elevated after natural intervention, consult a reproductive endocrinologist (Bloom IVF or Apollo Fertility) by May 2026 at the latest.
+  </div>
+</div>
+
+<!-- ============ FOOD LOG ============ -->
+<div class="card" id="food-log">
+  <h2>Daily Food Log</h2>
+  <p style="color:#718096;">This section will be updated from your Telegram group entries. Each entry will be assessed for gall bladder safety, inflammation impact, and fertility optimization.</p>
+
+  <div class="food-log-entry">
+    <div class="date">March 7, 2026</div>
+    <p><em>Awaiting first entry from Telegram group...</em></p>
+    <p style="color:#718096; font-size:0.85em;">Format: Tell me what you ate, when you ate it, and I'll rate it with remarks.</p>
+  </div>
+</div>
+
+<!-- ============ PILES UPDATE ============ -->
+<div class="card" id="piles">
+  <h2>Piles — Doctor Visit Updates</h2>
+
+  <div class="food-log-entry">
+    <div class="date">March 7, 2026</div>
+    <p><em>Going to piles doctor today. Will update with findings...</em></p>
+  </div>
+
+  <div class="alert-blue">
+    <strong>Key questions to ask your piles doctor:</strong>
+    <ol>
+      <li>What grade are the hemorrhoids? (Grade 1-4)</li>
+      <li>Is banding or any procedure needed, or can they be managed conservatively?</li>
+      <li>Are they contributing to any blood loss? (relevant to your hemoglobin 12.3)</li>
+      <li>What's the timeline to resolve before pregnancy? (hemorrhoids worsen significantly during pregnancy)</li>
+      <li>Is there any connection to your post-cholecystectomy bile/constipation issues?</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ============ KEY RESOURCES ============ -->
+<div class="card">
+  <h2>Key Resources</h2>
+  <ul>
+    <li><a href="https://www.hubermanlab.com/episode/how-to-optimize-fertility-in-males-and-females">Huberman Lab: Optimize Fertility</a></li>
+    <li><a href="https://www.hubermanlab.com/episode/dr-natalie-crawford-female-hormone-health-fertility-vitality">Dr. Natalie Crawford on Huberman</a></li>
+    <li><a href="https://www.nataliecrawfordmd.com/enhanceyournaturalfertility">Dr. Crawford: Enhance Your Natural Fertility</a></li>
+    <li><a href="https://fertility-nutritionist.com/improve-amh-to-conceive-naturally">Improve AMH Naturally — Fertility Nutritionist</a></li>
+    <li><a href="https://veerahealth.com/products/veera-pcos-support">Veera PCOS Support (your product)</a></li>
+    <li><a href="https://www.mayoclinic.org/diseases-conditions/nasal-polyps/symptoms-causes/syc-20351888">Nasal Polyps — Mayo Clinic</a></li>
+  </ul>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center; padding:20px; color:#a0aec0; font-size:0.8em;">
+  <p>Juhi Shah Health Dashboard | Last updated: March 7, 2026</p>
+  <p>AI-assisted analysis by Claude. All recommendations require physician review.</p>
+  <p><strong>Doctor Report PDF:</strong> analysis/doctor-report.pdf</p>
+</div>
+
+</div>
+</body>
+</html>
