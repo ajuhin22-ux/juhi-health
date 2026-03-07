@@ -159,7 +159,7 @@
 
 <div class="header">
   <h1>Juhi Shah & Abhas Chowdhry — Health Dashboard</h1>
-  <p>Last updated: March 7, 2026</p>
+  <p>Last updated: March 8, 2026</p>
 </div>
 
 <!-- MAIN TABS -->
@@ -786,118 +786,584 @@
 <div class="main-panel" id="panel-abhas">
 
   <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px; font-size:0.85em;">
-    <div style="background:#edf2f7; padding:6px 12px; border-radius:8px;"><strong>Abhas Chowdhry</strong></div>
-    <div style="background:#edf2f7; padding:6px 12px; border-radius:8px;">Active: Running + Pickleball</div>
+    <div style="background:#edf2f7; padding:6px 12px; border-radius:8px;"><strong>Abhas Chowdhry</strong> | Male, 33</div>
+    <div style="background:#edf2f7; padding:6px 12px; border-radius:8px;">Phase: Metabolic Recovery</div>
+    <div style="background:#edf2f7; padding:6px 12px; border-radius:8px;">4 Blood Reports (2019-2026)</div>
+    <div style="background:#edf2f7; padding:6px 12px; border-radius:8px;">Active: Running + Yoga + Pickleball</div>
   </div>
 
   <div class="sub-tabs">
     <div class="sub-tab active" onclick="switchSub('abhas','overview')">Overview</div>
+    <div class="sub-tab" onclick="switchSub('abhas','blood')">Blood Work</div>
     <div class="sub-tab" onclick="switchSub('abhas','supplements')">Supplements</div>
     <div class="sub-tab" onclick="switchSub('abhas','diet')">Diet</div>
     <div class="sub-tab" onclick="switchSub('abhas','fitness')">Fitness</div>
+    <div class="sub-tab" onclick="switchSub('abhas','routines')">Routines</div>
   </div>
 
+  <!-- ==================== OVERVIEW ==================== -->
   <div class="sub-panel active" id="abhas-overview">
     <div class="card">
-      <h2>Health Overview</h2>
-      <div class="alert-blue">
-        This section is a starting point. Add blood work, goals, and details as they come in.
+      <h2>Health Snapshot</h2>
+
+      <div class="alert-red">
+        <strong>Metabolic Recovery in Progress.</strong> Severe B12 + Vitamin D deficiency + atherogenic dyslipidemia identified Feb 2026. Root cause of fatigue, brain fog, anxiety. All treatable. Supplement protocol active since Feb 2026.
       </div>
 
-      <h3>Current Routine</h3>
-      <ul>
-        <li>Morning runs (regular)</li>
-        <li>Pickleball 1-2x/week (with Juhi)</li>
-        <li>Generally active and fit</li>
-      </ul>
+      <h3>Critical Findings (Feb 2026)</h3>
+      <table>
+        <tr><th>Finding</th><th>Value</th><th>Severity</th><th>Action</th></tr>
+        <tr>
+          <td><strong>Vitamin B12</strong></td>
+          <td class="high">&lt;148 pg/mL (undetectable)</td>
+          <td class="high">SEVERE</td>
+          <td>7-day injection course DONE. Weekly maintenance resumed Mar 6.</td>
+        </tr>
+        <tr>
+          <td><strong>Vitamin D</strong></td>
+          <td class="high">11.7 ng/mL</td>
+          <td class="high">SEVERE</td>
+          <td>D3 60K weekly — ongoing</td>
+        </tr>
+        <tr>
+          <td><strong>Triglycerides</strong></td>
+          <td class="high">352 mg/dL (3x since 2019)</td>
+          <td class="high">DANGEROUS</td>
+          <td>Diet + exercise + Omega-3</td>
+        </tr>
+        <tr>
+          <td><strong>HDL Cholesterol</strong></td>
+          <td class="high">27 mg/dL</td>
+          <td class="high">CRITICAL</td>
+          <td>Exercise + diet (target &gt;50)</td>
+        </tr>
+        <tr>
+          <td><strong>Homocysteine</strong></td>
+          <td class="high">Elevated 7+ years</td>
+          <td class="high">HIGH CV RISK</td>
+          <td>B12 supplementation addressing</td>
+        </tr>
+        <tr>
+          <td><strong>Uric Acid</strong></td>
+          <td class="watch">7.8 mg/dL</td>
+          <td class="watch">ELEVATED</td>
+          <td>Diet + hydration. No HIIT currently.</td>
+        </tr>
+      </table>
 
-      <h3>Pre-Conception (Male Side)</h3>
+      <h3>What's Going Well</h3>
+      <table>
+        <tr><th>Marker</th><th>Value</th><th>Status</th></tr>
+        <tr><td>HbA1c</td><td class="good">5.4% (improved from 5.7%)</td><td class="good">GOOD</td></tr>
+        <tr><td>Liver Function</td><td class="good">ALT 29, GGT 22 — improved</td><td class="good">NORMAL</td></tr>
+        <tr><td>Thyroid</td><td class="good">TSH 2.25, T3/T4 normal</td><td class="good">NORMAL</td></tr>
+        <tr><td>Kidneys</td><td class="good">eGFR 94, Creatinine 1.07</td><td class="good">NORMAL</td></tr>
+        <tr><td>Sleep</td><td class="good">7-8 hours, feeling rested</td><td class="good">STRONG</td></tr>
+      </table>
+
+      <div class="alert-green">
+        <strong>Key insight:</strong> You are not lazy. You are not weak. Your body has been running on empty — missing B12, Vitamin D, and battling metabolic syndrome. All fixable.
+      </div>
+
+      <h3>Pre-Conception (Male Health)</h3>
       <ul>
+        <li>Target conception: July 2026</li>
         <li>Sperm quality optimized by: consistent exercise, good sleep, low alcohol, no smoking</li>
         <li>Key supplements: Omega-3, Vitamin D, Zinc, CoQ10, Folate</li>
         <li>Avoid: excessive heat (laptop on lap, hot baths), tight synthetic underwear</li>
         <li>Consider: semen analysis baseline test</li>
       </ul>
-
-      <h3>Blood Work</h3>
-      <p style="color:#718096;"><em>No recent blood work on file. Consider a comprehensive panel.</em></p>
     </div>
   </div>
 
+  <!-- ==================== BLOOD WORK ==================== -->
+  <div class="sub-panel" id="abhas-blood">
+    <div class="card">
+      <h2>Blood Work — 7-Year Tracking (2019 &rarr; 2026)</h2>
+
+      <div class="alert-blue">
+        4 blood panels analyzed: Jul 2019 (age 26) &rarr; Feb 2021 (28) &rarr; Mar 2024 (31) &rarr; Feb 2026 (33). Full analysis by AI, reviewed with Dr. Chowdhry (sister).
+      </div>
+
+      <h3>Metabolic Panel (Primary Concern)</h3>
+      <table>
+        <tr><th>Marker</th><th>Jul 2019</th><th>Feb 2021</th><th>Mar 2024</th><th>Feb 2026</th><th>Optimal</th><th>Trend</th></tr>
+        <tr>
+          <td>Triglycerides</td>
+          <td class="good">110</td>
+          <td class="watch">123</td>
+          <td class="high">209</td>
+          <td class="high">352</td>
+          <td>&lt;100</td>
+          <td class="high">3.2x increase</td>
+        </tr>
+        <tr>
+          <td>HDL ("good")</td>
+          <td class="watch">35.7</td>
+          <td class="watch">37</td>
+          <td class="high">27</td>
+          <td class="high">27</td>
+          <td>&gt;50</td>
+          <td class="high">Crashing</td>
+        </tr>
+        <tr>
+          <td>LDL ("bad")</td>
+          <td class="good">86.9</td>
+          <td class="watch">125</td>
+          <td class="watch">106</td>
+          <td class="high">129</td>
+          <td>&lt;100</td>
+          <td class="high">High</td>
+        </tr>
+        <tr>
+          <td>Total Cholesterol</td>
+          <td class="good">145</td>
+          <td class="good">187</td>
+          <td class="good">175</td>
+          <td class="good">181</td>
+          <td>&lt;200</td>
+          <td class="good">OK</td>
+        </tr>
+        <tr>
+          <td>Chol/HDL Ratio</td>
+          <td class="watch">4.0</td>
+          <td class="high">5.0</td>
+          <td class="high">6.48</td>
+          <td class="high">6.7</td>
+          <td>&lt;3.5</td>
+          <td class="high">Worsening</td>
+        </tr>
+        <tr>
+          <td>Fasting Glucose</td>
+          <td class="good">82.5</td>
+          <td class="watch">88</td>
+          <td class="watch">91</td>
+          <td class="watch">91</td>
+          <td>&lt;86</td>
+          <td class="watch">Stable</td>
+        </tr>
+        <tr>
+          <td>HbA1c</td>
+          <td class="watch">5.6%</td>
+          <td class="watch">5.6%</td>
+          <td class="high">5.7%</td>
+          <td class="good">5.4%</td>
+          <td>&lt;5.4%</td>
+          <td class="good">Improved!</td>
+        </tr>
+      </table>
+
+      <div class="alert-red">
+        <strong>Atherogenic dyslipidemia:</strong> High triglycerides + low HDL + high LDL = lipid pattern most strongly associated with heart attacks and strokes. Every ratio is moving the wrong direction over 7 years.
+      </div>
+
+      <h3>Vitamins &amp; Nutrients</h3>
+      <table>
+        <tr><th>Marker</th><th>Jul 2019</th><th>Mar 2024</th><th>Feb 2026</th><th>Optimal</th><th>Status</th></tr>
+        <tr>
+          <td>Vitamin B12</td>
+          <td>—</td>
+          <td>—</td>
+          <td class="high">&lt;148</td>
+          <td>400-800</td>
+          <td class="high">SEVERE DEFICIENCY</td>
+        </tr>
+        <tr>
+          <td>Vitamin D</td>
+          <td class="high">15.1</td>
+          <td>—</td>
+          <td class="high">11.7</td>
+          <td>40-60</td>
+          <td class="high">WORSE (7+ yrs deficient)</td>
+        </tr>
+        <tr>
+          <td>Homocysteine</td>
+          <td class="high">26.2</td>
+          <td class="high">19.78</td>
+          <td>—</td>
+          <td>&lt;10</td>
+          <td class="high">CHRONICALLY ELEVATED</td>
+        </tr>
+        <tr>
+          <td>Magnesium</td>
+          <td>—</td>
+          <td>—</td>
+          <td class="watch">1.6</td>
+          <td>2.0-2.3</td>
+          <td class="watch">LOW-NORMAL</td>
+        </tr>
+        <tr>
+          <td>Iron</td>
+          <td>—</td>
+          <td>128</td>
+          <td class="good">93</td>
+          <td>65-175</td>
+          <td class="good">Normal</td>
+        </tr>
+      </table>
+
+      <h3>Liver Function (Improved)</h3>
+      <table>
+        <tr><th>Marker</th><th>Jul 2019</th><th>Feb 2021</th><th>Mar 2024</th><th>Feb 2026</th><th>Ref</th><th>Trend</th></tr>
+        <tr>
+          <td>ALT (SGPT)</td>
+          <td class="good">15.3</td>
+          <td class="watch">41</td>
+          <td class="watch">37</td>
+          <td class="good">29</td>
+          <td>&lt;41</td>
+          <td class="good">Improved</td>
+        </tr>
+        <tr>
+          <td>AST (SGOT)</td>
+          <td class="good">13.9</td>
+          <td class="good">23</td>
+          <td class="good">22</td>
+          <td class="good">22</td>
+          <td>&lt;40</td>
+          <td class="good">Stable</td>
+        </tr>
+        <tr>
+          <td>GGT</td>
+          <td>—</td>
+          <td class="good">33</td>
+          <td class="good">29</td>
+          <td class="good">22</td>
+          <td>&lt;73</td>
+          <td class="good">Improved</td>
+        </tr>
+      </table>
+
+      <h3>Kidney &amp; Uric Acid</h3>
+      <table>
+        <tr><th>Marker</th><th>Jul 2019</th><th>Mar 2024</th><th>Feb 2026</th><th>Ref</th><th>Status</th></tr>
+        <tr>
+          <td>Creatinine</td>
+          <td class="good">1.06</td>
+          <td class="good">0.95</td>
+          <td class="good">1.07</td>
+          <td>0.7-1.25</td>
+          <td class="good">Normal</td>
+        </tr>
+        <tr>
+          <td>eGFR</td>
+          <td>—</td>
+          <td class="good">&gt;90</td>
+          <td class="good">94</td>
+          <td>&gt;90</td>
+          <td class="good">Normal</td>
+        </tr>
+        <tr>
+          <td>Uric Acid</td>
+          <td class="high">7.70</td>
+          <td class="high">7.9</td>
+          <td class="high">7.8</td>
+          <td>3.5-7.0</td>
+          <td class="high">Consistently high</td>
+        </tr>
+      </table>
+
+      <h3>Thyroid (Normal &mdash; Ruled Out)</h3>
+      <table>
+        <tr><th>Marker</th><th>Feb 2026</th><th>Ref</th><th>Status</th></tr>
+        <tr><td>TSH</td><td class="good">2.248</td><td>0.4-4.0</td><td class="good">Normal</td></tr>
+        <tr><td>T3 Total</td><td class="good">1.32</td><td>0.97-1.69</td><td class="good">Normal</td></tr>
+        <tr><td>T4 Total</td><td class="good">8.87</td><td>5.53-11</td><td class="good">Normal</td></tr>
+      </table>
+
+      <h3>Immune / Inflammatory</h3>
+      <table>
+        <tr><th>Marker</th><th>Value</th><th>Ref</th><th>Status</th></tr>
+        <tr><td>IgE Total (2024)</td><td class="high">300 IU/mL</td><td>0-100</td><td class="high">3x UPPER LIMIT</td></tr>
+        <tr><td>ESR (2026)</td><td class="good">5</td><td>&lt;10</td><td class="good">Normal</td></tr>
+        <tr><td>CRP (2024)</td><td class="watch">1.73</td><td>&lt;1.0</td><td class="watch">Average CV risk</td></tr>
+      </table>
+
+      <div class="alert-orange">
+        <strong>IgE at 300 (3x normal)</strong> suggests significant allergic sensitization — environmental allergies likely (dust mites, pollen). Allergy workup recommended.
+      </div>
+
+      <h3>CBC (Stable)</h3>
+      <table>
+        <tr><th>Marker</th><th>Jul 2019</th><th>Feb 2026</th><th>Status</th></tr>
+        <tr><td>Hemoglobin</td><td class="good">15.3</td><td class="good">14.1</td><td class="good">Normal</td></tr>
+        <tr><td>RBC</td><td class="good">5.09</td><td class="good">5.20</td><td class="good">Normal</td></tr>
+        <tr><td>WBC</td><td class="good">7300</td><td class="good">8110</td><td class="good">Normal</td></tr>
+        <tr><td>Platelets</td><td class="good">265K</td><td class="good">290K</td><td class="good">Normal</td></tr>
+      </table>
+
+      <h3>Next Retest (Target: May-June 2026)</h3>
+      <ul>
+        <li>Vitamin B12, Vitamin D (25-OH), Homocysteine</li>
+        <li>Complete lipid panel (including ApoB)</li>
+        <li>HbA1c, Fasting Insulin + HOMA-IR</li>
+        <li>Uric acid, Ferritin, Folate</li>
+        <li>Testosterone (Total + Free)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== SUPPLEMENTS ==================== -->
   <div class="sub-panel" id="abhas-supplements">
     <div class="card">
-      <h2>Supplements</h2>
+      <h2>Current Supplement Stack</h2>
+
+      <div class="alert-green">
+        <strong>All 4 critical supplements running consistently as of Mar 6, 2026.</strong>
+      </div>
+
       <table>
-        <tr><th>Supplement</th><th>Brand</th><th>Dose</th><th>Status</th></tr>
+        <tr><th>Supplement</th><th>Brand</th><th>Dose</th><th>Timing</th><th>Status</th></tr>
+        <tr>
+          <td><strong>Vitamin B12 Injection</strong></td>
+          <td>Neurobion Forte IM (Merck)</td>
+          <td>1 injection weekly</td>
+          <td>Weekly (any day)</td>
+          <td><span class="pill pill-rx">PRESCRIBED</span></td>
+        </tr>
         <tr>
           <td><strong>Vitamin D3 60K</strong></td>
           <td>Uprise-D3 60K (Alkem)</td>
           <td>60,000 IU weekly</td>
+          <td>With fattiest meal of the week</td>
           <td><span class="pill pill-active">ACTIVE</span></td>
         </tr>
         <tr>
-          <td><strong>Omega-3</strong></td>
-          <td>Muscle Nectar Triple Strength (1500mg EPA+DHA, TG form)</td>
-          <td>1 cap/day</td>
+          <td><strong>Omega-3 (Fish Oil)</strong></td>
+          <td>Muscle Nectar (TG form, Sardine)</td>
+          <td>2 soft gels/day (EPA 900mg + DHA 600mg)</td>
+          <td>Before food</td>
+          <td><span class="pill pill-active">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td><strong>Folic Acid</strong></td>
+          <td>&mdash;</td>
+          <td>Daily</td>
+          <td>Morning</td>
+          <td><span class="pill pill-active">ACTIVE</span></td>
+        </tr>
+        <tr>
+          <td><strong>Plant Protein</strong></td>
+          <td>The Whole Truth (Pista Badaam 24g)</td>
+          <td>Daily</td>
+          <td>Post-exercise / anytime</td>
           <td><span class="pill pill-active">ACTIVE</span></td>
         </tr>
       </table>
 
-      <h3>Consider Adding (Pre-Conception)</h3>
+      <h3>Omega-3 Dose Analysis</h3>
+      <table>
+        <tr><th>Per Serving (2 soft gels)</th><th>Amount</th></tr>
+        <tr><td>Fish Oil</td><td>2500 mg</td></tr>
+        <tr><td>Total EPA + DHA</td><td>1500 mg</td></tr>
+        <tr><td><strong>EPA</strong></td><td><strong>900 mg</strong></td></tr>
+        <tr><td><strong>DHA</strong></td><td><strong>600 mg</strong></td></tr>
+        <tr><td>Vitamin K2 (MK-7)</td><td>55 mcg</td></tr>
+        <tr><td>Vitamin D3</td><td>10 mcg</td></tr>
+      </table>
+
+      <div class="alert-blue">
+        <strong>EPA target (Huberman):</strong> 2g/day. Current: 900mg (2 caps). Consider increasing to 4 caps (1800mg EPA) after 2-3 weeks if no GI issues. 900mg is still a solid therapeutic dose &mdash; studies show 1-2g EPA reduces triglycerides by 15-25%.
+      </div>
+
+      <h3>Consider Adding (Pre-Conception + Metabolic)</h3>
       <table>
         <tr><th>Supplement</th><th>Why</th><th>Status</th></tr>
         <tr><td>Zinc (25-30mg)</td><td>Sperm quality + testosterone</td><td><span class="pill pill-wait">DISCUSS</span></td></tr>
         <tr><td>CoQ10 (200mg)</td><td>Sperm motility + energy</td><td><span class="pill pill-wait">DISCUSS</span></td></tr>
-        <tr><td>Folate / Folic Acid</td><td>Sperm DNA quality</td><td><span class="pill pill-wait">DISCUSS</span></td></tr>
+        <tr><td>Magnesium Glycinate (400mg)</td><td>Bottom of range (1.6), helps insulin + sleep</td><td><span class="pill pill-wait">DISCUSS</span></td></tr>
+        <tr><td>Grape Seed Extract (400-800mg)</td><td>Huberman protocol &mdash; vascular function</td><td><span class="pill pill-wait">DISCUSS</span></td></tr>
+      </table>
+
+      <h3>Ruled Out</h3>
+      <table>
+        <tr><th>Supplement</th><th>Verdict</th></tr>
+        <tr><td>Shilajit Gummies (Man Matters, KSM-66 Ashwagandha)</td><td>SKIP &mdash; doesn't address critical issues (TG, B12, D). Fulvic acid adds unpredictable mineral absorption. Ashwagandha affects thyroid (currently normal). Let it expire.</td></tr>
       </table>
     </div>
   </div>
 
+  <!-- ==================== DIET ==================== -->
   <div class="sub-panel" id="abhas-diet">
     <div class="card">
-      <h2>Diet</h2>
+      <h2>Diet &mdash; Keep It Simple</h2>
 
       <div class="alert-blue">
-        <strong>Household meals are low-fat (Juhi's constraint).</strong> Abhas can add extra portions, nuts, and healthy fats more freely since he has a functioning gall bladder.
+        <strong>Household meals are low-fat (Juhi has no gall bladder).</strong> Abhas can add extra portions, nuts, and healthy fats more freely.
       </div>
+
+      <div class="alert-orange">
+        <strong>No diet. No calorie counting.</strong> Just three rules:
+      </div>
+
+      <h3>The 3 Rules</h3>
+      <table>
+        <tr><th>#</th><th>Rule</th><th>Detail</th></tr>
+        <tr><td>1</td><td><strong>Eat mostly real food</strong></td><td>If it grew or had a face, it's fine. Minimize packaged/processed stuff.</td></tr>
+        <tr><td>2</td><td><strong>Protein at every meal</strong></td><td>Eggs, chicken, fish, lentils, yogurt. Keeps you full, preserves muscle.</td></tr>
+        <tr><td>3</td><td><strong>Drink water</strong></td><td>Carry a bottle. Most "hunger" and "fatigue" is dehydration. Min 2-3L/day.</td></tr>
+      </table>
+
+      <h3>Triglyceride Emergency &mdash; Cut These</h3>
+      <table>
+        <tr><th>Driver</th><th>Action</th></tr>
+        <tr><td>Refined carbs (white rice, bread, naan, biscuits)</td><td class="watch">Cut by 50%. Replace with whole grains, vegetables.</td></tr>
+        <tr><td>Sugar (chai with sugar, sweets, soft drinks, juice)</td><td class="high">Eliminate added sugar for 3 months.</td></tr>
+        <tr><td>Alcohol</td><td class="high">Eliminate completely until TG normalizes.</td></tr>
+        <tr><td>Fruit juice</td><td class="watch">Limit to 1-2 whole fruits/day. No juice (fructose &rarr; TG).</td></tr>
+        <tr><td>Late-night eating</td><td class="watch">Stop eating 3 hours before bed.</td></tr>
+      </table>
 
       <h3>Meal Structure</h3>
       <table>
         <tr><th>Meal</th><th>What</th></tr>
         <tr><td>Breakfast</td><td>Eggs / protein + oats/toast + fruit</td></tr>
-        <tr><td>Lunch</td><td>Dal + sabzi + roti/rice + curd (can have more rice/roti for calories)</td></tr>
+        <tr><td>Lunch</td><td>Dal + sabzi + roti/rice + curd</td></tr>
         <tr><td>Snack</td><td>Nuts, fruits, roasted chana, protein bar</td></tr>
-        <tr><td>Dinner</td><td>Same as Juhi — light, early</td></tr>
+        <tr><td>Dinner</td><td>Light, early. Same as Juhi.</td></tr>
       </table>
 
       <h3>Pre-Conception Foods</h3>
       <ul>
         <li><strong>Zinc-rich:</strong> Pumpkin seeds, chickpeas, lentils, sesame</li>
-        <li><strong>Omega-3:</strong> Walnuts, flaxseeds (he can have more freely)</li>
+        <li><strong>Omega-3:</strong> Walnuts, flaxseeds</li>
         <li><strong>Antioxidants:</strong> Berries, tomatoes, leafy greens</li>
-        <li><strong>Avoid:</strong> Excess alcohol, processed food, sugar</li>
+        <li><strong>Beetroot:</strong> Natural betaine source &mdash; lowers homocysteine. 3-4x/week.</li>
       </ul>
 
+      <h3>Kitchen Upgrades (Mar 2026)</h3>
+      <div class="alert-green">
+        Replaced scratched non-stick pans (5 yrs old) &rarr; <strong>stainless steel</strong> (eliminates PFAS/Teflon). Plastic plates &rarr; <strong>glass crockery</strong> (eliminates microplastic leaching).
+      </div>
+
       <div class="alert-orange">
-        <strong>For Abhas:</strong> Limit hot baths and laptop on lap — heat impacts sperm quality. Cotton underwear preferred.
+        <strong>For pre-conception:</strong> Limit hot baths and laptop on lap &mdash; heat impacts sperm quality. Cotton underwear preferred.
       </div>
     </div>
   </div>
 
+  <!-- ==================== FITNESS ==================== -->
   <div class="sub-panel" id="abhas-fitness">
     <div class="card">
-      <h2>Fitness</h2>
-      <table>
-        <tr><th>Activity</th><th>Frequency</th></tr>
-        <tr><td>Morning runs</td><td>Regular</td></tr>
-        <tr><td>Pickleball</td><td>1-2x/week (with Juhi)</td></tr>
-      </table>
+      <h2>Fitness &mdash; Two-Phase Plan</h2>
 
       <div class="alert-blue">
-        <strong>Pre-conception note:</strong> Regular moderate exercise improves sperm quality. Avoid overtraining (marathons, extreme endurance) which can temporarily reduce sperm count. Current routine looks ideal.
+        <strong>Current phase:</strong> Cardio Foundation (Now &rarr; Mid-April). Running/jogging is the anchor. Gym starts mid-April.
       </div>
 
-      <p style="margin-top:10px; color:#718096;"><em>Add more details as tracking begins.</em></p>
+      <h3>Daily Non-Negotiables</h3>
+      <table>
+        <tr><th>Habit</th><th>Detail</th></tr>
+        <tr><td><strong>Morning sunlight walk</strong></td><td>20-30 min immediately after waking. No phone.</td></tr>
+        <tr><td><strong>Hydrate first</strong></td><td>Full glass of water before coffee/food.</td></tr>
+        <tr><td><strong>Pranayama</strong></td><td>10-15 min Ramdev breathing. After walk, before work.</td></tr>
+      </table>
+
+      <h3>Phase 1: Cardio Foundation (Now &rarr; Mid-April)</h3>
+      <table>
+        <tr><th>Day</th><th>Session</th><th>Duration</th></tr>
+        <tr><td>Mon</td><td>Zone 2 Run/Jog</td><td>45-60 min</td></tr>
+        <tr><td>Tue</td><td>Zone 2 Run/Jog</td><td>45-60 min</td></tr>
+        <tr><td>Wed</td><td>Yoga with Adriene</td><td>30-45 min</td></tr>
+        <tr><td>Thu</td><td>Zone 2 Run/Jog</td><td>45-60 min</td></tr>
+        <tr><td>Fri</td><td>Zone 2 Run/Jog</td><td>45-60 min</td></tr>
+        <tr><td>Sat</td><td>Bodyweight Strength</td><td>30-40 min</td></tr>
+        <tr><td>Sun</td><td>Rest or Yoga</td><td>30-45 min</td></tr>
+      </table>
+
+      <div class="alert-neutral">
+        <strong>Zone 2 check:</strong> If you can't breathe through your nose &mdash; slow down. If you can't hold a conversation &mdash; slow down. Target HR ~120-140 bpm.
+      </div>
+
+      <h3>Phase 2: Add Gym (Mid-April &rarr; June)</h3>
+      <table>
+        <tr><th>Day</th><th>Morning (10 min)</th><th>Main Session</th></tr>
+        <tr><td>Mon</td><td>Stability routine</td><td><strong>Legs</strong> &mdash; Gym (60-70 min)</td></tr>
+        <tr><td>Tue</td><td>Stability routine</td><td>Zone 2 Run/Jog (45-60 min)</td></tr>
+        <tr><td>Wed</td><td>Stability routine</td><td><strong>Push</strong> &mdash; Chest/Shoulders/Triceps (60-70 min)</td></tr>
+        <tr><td>Thu</td><td>Stability routine</td><td>Zone 2 Run/Jog (45-60 min)</td></tr>
+        <tr><td>Fri</td><td>Stability routine</td><td><strong>Pull</strong> &mdash; Back/Biceps (60-70 min)</td></tr>
+        <tr><td>Sat</td><td>&mdash;</td><td>Yoga or Zone 2 Run (45-60 min)</td></tr>
+        <tr><td>Sun</td><td>&mdash;</td><td>Rest. Walk + Pranayama only.</td></tr>
+      </table>
+
+      <div class="alert-neutral">
+        <strong>Stability routine (10 min, Attia protocol):</strong> Toe yoga &rarr; Diaphragmatic breathing &rarr; Cat-Cow &rarr; Scapular CARs &rarr; 90/90 Hip Switch &rarr; Dead Bug &rarr; Single-Leg Balance
+      </div>
+
+      <div class="alert-neutral">
+        <strong>Monthly alternation (Huberman):</strong> Month A = Strength (4-8 reps, heavier, 2-4 min rest). Month B = Hypertrophy (8-15 reps, moderate, 60-90s rest).
+      </div>
+
+      <h3>Pickleball</h3>
+      <p>When it happens, replaces that day's run. Don't double up. Count as cardio. 1-2x/week with Juhi.</p>
+
+      <h3>What NOT to Do</h3>
+      <div class="alert-orange">
+        <strong>No HIIT currently.</strong> Zone 2 cardio is priority for triglycerides and HDL. HIIT transiently spikes uric acid (yours is 7.8). Revisit after 3 months if lipids improve.
+      </div>
+
+      <div class="alert-blue">
+        <strong>Pre-conception note:</strong> Regular moderate exercise improves sperm quality. Avoid overtraining (marathons, extreme endurance) which can temporarily reduce sperm count. Current routine is ideal.
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ROUTINES ==================== -->
+  <div class="sub-panel" id="abhas-routines">
+    <div class="card">
+      <h2>Daily Routines &amp; Energy Management</h2>
+
+      <h3>Morning (Non-Negotiable)</h3>
+      <table>
+        <tr><th>#</th><th>Step</th></tr>
+        <tr><td>1</td><td>Wake at consistent time</td></tr>
+        <tr><td>2</td><td>Glass of water</td></tr>
+        <tr><td>3</td><td>20-30 min walk (sunlight, no phone)</td></tr>
+        <tr><td>4</td><td>10-15 min Ramdev pranayama</td></tr>
+        <tr><td>5</td><td>Start deep work within first hour of being home</td></tr>
+      </table>
+
+      <h3>Evening (Wind-Down)</h3>
+      <table>
+        <tr><th>#</th><th>Step</th></tr>
+        <tr><td>1</td><td>Stop work at a defined time (set a boundary)</td></tr>
+        <tr><td>2</td><td>Light activity or stretching</td></tr>
+        <tr><td>3</td><td>No screens 30 min before bed</td></tr>
+        <tr><td>4</td><td>Consistent bedtime</td></tr>
+      </table>
+
+      <h3>Energy Pattern &mdash; Use It</h3>
+      <table>
+        <tr><th>Time Block</th><th>Energy</th><th>Best For</th></tr>
+        <tr><td>First 2-3 hrs after waking</td><td class="good">Peak</td><td>Deep work, hard problems, creative thinking</td></tr>
+        <tr><td>Mid-morning to early afternoon</td><td class="watch">Steady</td><td>Meetings, collaboration, structured tasks</td></tr>
+        <tr><td>Post-lunch</td><td class="high">Dip</td><td>Admin, easy tasks, or 20-min nap</td></tr>
+        <tr><td>Late afternoon</td><td class="watch">Second wind</td><td>Moderate work, planning, exercise</td></tr>
+        <tr><td>Evening</td><td>Wind-down</td><td>Light work, learning, social time</td></tr>
+      </table>
+
+      <div class="alert-green">
+        <strong>Protect peak hours ruthlessly.</strong> No email, no meetings, no admin in first 2-3 hours. That's when you do your best thinking.
+      </div>
+
+      <h3>When Stress Spikes</h3>
+      <ul>
+        <li>5 min walk outside (pattern interrupt)</li>
+        <li>Box breathing: inhale 4s &rarr; hold 4s &rarr; exhale 4s &rarr; hold 4s (4 rounds)</li>
+        <li>Write down what's stressing you (gets it out of your head)</li>
+      </ul>
+
+      <h3>Work Blocks</h3>
+      <p><strong>50 min focused work &rarr; 10 min break</strong> (walk, stretch, breathe). Single-task rule: one thing at a time. Close extra tabs. Phone in another room during deep work.</p>
+
+      <h3>Sleep (Already Strong &mdash; Protect It)</h3>
+      <ul>
+        <li>Same wake time every day (including weekends, &plusmn;30 min)</li>
+        <li>No caffeine after 2pm</li>
+        <li>Screens dim/off 30-60 min before bed</li>
+        <li>If sleep ever degrades, fix it before everything else &mdash; it's the foundation</li>
+      </ul>
     </div>
   </div>
 
