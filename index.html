@@ -177,7 +177,7 @@
 
 <div class="header">
   <h1>Juhi Shah & Abhas Chowdhry — Health Dashboard</h1>
-  <p>Last updated: March 8, 2026</p>
+  <p>Last updated: March 9, 2026</p>
 </div>
 
 <!-- MAIN TABS -->
@@ -1575,18 +1575,26 @@
 
   <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px; font-size:0.85em;">
     <div style="background:#edf2f7; padding:6px 12px; border-radius:8px;"><strong>Abhas Chowdhry</strong> | Male, 33</div>
-    <div style="background:#edf2f7; padding:6px 12px; border-radius:8px;">Phase: Metabolic Recovery</div>
+    <div style="background:#fff5f5; padding:6px 12px; border-radius:8px; color:var(--red);">B12: <strong>&lt;148</strong></div>
+    <div style="background:#fff5f5; padding:6px 12px; border-radius:8px; color:var(--red);">TG: <strong>352</strong></div>
+    <div style="background:#fff5f5; padding:6px 12px; border-radius:8px; color:var(--red);">HDL: <strong>27</strong></div>
+    <div style="background:#fff5f5; padding:6px 12px; border-radius:8px; color:var(--red);">Vit D: <strong>11.7</strong></div>
+    <div style="background:#f0fff4; padding:6px 12px; border-radius:8px; color:var(--green);">HbA1c: <strong>5.4%</strong></div>
     <div style="background:#edf2f7; padding:6px 12px; border-radius:8px;">4 Blood Reports (2019-2026)</div>
-    <div style="background:#edf2f7; padding:6px 12px; border-radius:8px;">Active: Running + Yoga + Pickleball</div>
   </div>
 
   <div class="sub-tabs">
     <div class="sub-tab active" onclick="switchSub('abhas','overview')">Overview</div>
     <div class="sub-tab" onclick="switchSub('abhas','blood')">Blood Work</div>
+    <div class="sub-tab" onclick="switchSub('abhas','metabolic')">Metabolic Syndrome</div>
     <div class="sub-tab" onclick="switchSub('abhas','supplements')">Supplements</div>
+    <div class="sub-tab" onclick="switchSub('abhas','products')">My Products</div>
     <div class="sub-tab" onclick="switchSub('abhas','diet')">Diet</div>
     <div class="sub-tab" onclick="switchSub('abhas','fitness')">Fitness</div>
+    <div class="sub-tab" onclick="switchSub('abhas','allergies')">Allergies</div>
+    <div class="sub-tab" onclick="switchSub('abhas','skin')">Skin</div>
     <div class="sub-tab" onclick="switchSub('abhas','routines')">Routines</div>
+    <div class="sub-tab" onclick="switchSub('abhas','experts')">Doctors &amp; Experts</div>
   </div>
 
   <!-- ==================== OVERVIEW ==================== -->
@@ -1891,83 +1899,283 @@
     </div>
   </div>
 
+  <!-- ==================== METABOLIC SYNDROME ==================== -->
+  <div class="sub-panel" id="abhas-metabolic">
+    <div class="card">
+      <h2>Metabolic Syndrome &mdash; Root Cause Analysis</h2>
+
+      <div class="alert-red">
+        <strong>Atherogenic Dyslipidemia:</strong> High triglycerides + low HDL + elevated LDL = the lipid triad most strongly linked to heart attacks and strokes. Per <a href="https://academic.oup.com/eurheartj/article/41/1/111/5556353">2019 ESC/EAS Guidelines</a>, this pattern carries high cardiovascular risk.
+      </div>
+
+      <h3>The Vicious Cycle</h3>
+      <p>B12 deficiency + Vitamin D deficiency + sky-high triglycerides form a self-reinforcing loop:</p>
+      <table>
+        <tr><th>Deficiency</th><th>What It Causes</th><th>How It Worsens Others</th></tr>
+        <tr>
+          <td class="high">B12 &lt;148</td>
+          <td>Elevated homocysteine &rarr; blood vessel damage &rarr; CV risk. Fatigue, brain fog, nerve damage. <a href="https://pubmed.ncbi.nlm.nih.gov/9508561/" style="font-size:0.8em;">[NEJM]</a></td>
+          <td>Impairs energy metabolism &rarr; worsens fatigue &rarr; less exercise &rarr; worse lipids</td>
+        </tr>
+        <tr>
+          <td class="high">Vitamin D 11.7</td>
+          <td>Insulin resistance, weak immunity, depression, bone loss. <a href="https://academic.oup.com/jcem/article/96/7/1911/2833671" style="font-size:0.8em;">[Endocrine Society]</a></td>
+          <td>Worsens insulin resistance &rarr; worse triglycerides &rarr; more visceral fat</td>
+        </tr>
+        <tr>
+          <td class="high">Triglycerides 352</td>
+          <td>Pancreatitis risk at &gt;500. Accelerated atherosclerosis. <a href="https://www.ahajournals.org/doi/10.1161/CIR.0000000000000625" style="font-size:0.8em;">[AHA 2019]</a></td>
+          <td>Systemic inflammation &rarr; worse B12/D absorption &rarr; deeper deficiency</td>
+        </tr>
+        <tr>
+          <td class="high">HDL 27</td>
+          <td>HDL &lt;40 in men = independent major risk factor for coronary heart disease</td>
+          <td>Less reverse cholesterol transport &rarr; more arterial plaque buildup</td>
+        </tr>
+      </table>
+
+      <h3>Homocysteine &mdash; The Hidden Threat (7+ Years)</h3>
+      <table>
+        <tr><th>Year</th><th>Homocysteine</th><th>Optimal</th><th>Status</th></tr>
+        <tr><td>Jul 2019</td><td class="high">26.2 &micro;mol/L</td><td>&lt;10</td><td class="high">Nearly 3x upper limit</td></tr>
+        <tr><td>Mar 2024</td><td class="high">19.78 &micro;mol/L</td><td>&lt;10</td><td class="high">Still 2x upper limit</td></tr>
+      </table>
+
+      <div class="alert-orange">
+        <strong>Why this matters:</strong> Elevated homocysteine is an independent risk factor for coronary artery disease, stroke, blood clots, and cognitive decline (<a href="https://pubmed.ncbi.nlm.nih.gov/9508561/">NEJM, Wald et al.</a>). B12 is the primary enzyme cofactor that clears homocysteine. With B12 at &lt;148, homocysteine has been accumulating for years.
+      </div>
+
+      <p><strong>Clearance pathways being addressed:</strong></p>
+      <table>
+        <tr><th>Pathway</th><th>Mechanism</th><th>Intervention</th></tr>
+        <tr><td>B12 + Folate</td><td>Remethylation via methionine synthase</td><td>Neurobion Forte injections (B12 + B6) + Folic acid</td></tr>
+        <tr><td>Betaine (TMG)</td><td>Remethylation via BHMT enzyme</td><td>Beetroot in diet (natural betaine source ~250mg/100g)</td></tr>
+      </table>
+
+      <h3>If You Do Nothing (Current Trajectory)</h3>
+      <table>
+        <tr><th>Timeline</th><th>What Happens</th></tr>
+        <tr><td class="high">2-3 years</td><td>Triglycerides exceed 500 &rarr; pancreatitis risk</td></tr>
+        <tr><td class="high">Ongoing</td><td>B12 deficiency &rarr; peripheral neuropathy (tingling, numbness in hands/feet &mdash; may already be starting), memory problems, potentially irreversible nerve damage</td></tr>
+        <tr><td class="high">By age 40</td><td>Cardiovascular event risk significantly elevated</td></tr>
+        <tr><td class="watch">Progressive</td><td>Metabolic syndrome progresses to type 2 diabetes</td></tr>
+      </table>
+
+      <h3>If You Act Now (Achievable in 6 Months)</h3>
+      <table>
+        <tr><th>Marker</th><th>Current</th><th>Target</th><th>How</th></tr>
+        <tr><td>B12 + Vitamin D</td><td class="high">Severely deficient</td><td class="good">Normalized</td><td>Supplementation (already active). 3 months.</td></tr>
+        <tr><td>Homocysteine</td><td class="high">&gt;19</td><td class="good">&lt;12</td><td>Should drop within 3-4 months of B12 repletion.</td></tr>
+        <tr><td>Triglycerides</td><td class="high">352</td><td class="watch">175-250</td><td>Diet + exercise + Omega-3. 30-50% reduction achievable.</td></tr>
+        <tr><td>HDL</td><td class="high">27</td><td class="watch">33-35</td><td>Exercise + diet. 15-25% increase. Continues improving.</td></tr>
+        <tr><td>Energy / Focus</td><td class="high">Fatigue, brain fog</td><td class="good">Dramatic improvement</td><td>4-8 weeks as B12 and D normalize.</td></tr>
+      </table>
+
+      <div class="alert-green">
+        <strong>The gap between these two futures is entirely within your control.</strong> B12 and D fixes are as simple as taking supplements. Metabolic fixes require lifestyle changes. All of it is doable. Everything is still reversible &mdash; but not for much longer at this trajectory.
+      </div>
+
+      <h3>Primary Drivers</h3>
+      <ol>
+        <li><strong>Severe B12 deficiency</strong> &mdash; likely dietary/absorption issue, present for years before first test</li>
+        <li><strong>Severe Vitamin D deficiency</strong> &mdash; indoor lifestyle, limited sun, never adequately supplemented</li>
+        <li><strong>Developing metabolic syndrome</strong> &mdash; insulin resistance driving the TG/HDL pattern</li>
+        <li><strong>Sedentary periods</strong> &mdash; directly worsens every marker</li>
+        <li><strong>Dietary factors</strong> &mdash; likely high refined carbs/sugar driving triglycerides</li>
+      </ol>
+
+      <h3>Tests Still Needed</h3>
+      <table>
+        <tr><th>Test</th><th>Why</th></tr>
+        <tr><td><strong>Fasting Insulin + HOMA-IR</strong></td><td>Confirms insulin resistance (likely, given lipid pattern)</td></tr>
+        <tr><td><strong>Testosterone (Total + Free)</strong></td><td>B12 + D deficiency + metabolic syndrome all suppress testosterone. Low T explains fatigue, low energy, poor body composition.</td></tr>
+        <tr><td><strong>Ferritin</strong></td><td>Iron storage marker &mdash; never tested across 4 reports</td></tr>
+        <tr><td><strong>Liver ultrasound</strong></td><td>Screen for NAFLD with lipid profile + ALT history</td></tr>
+      </table>
+    </div>
+  </div>
+
   <!-- ==================== SUPPLEMENTS ==================== -->
   <div class="sub-panel" id="abhas-supplements">
     <div class="card">
-      <h2>Current Supplement Stack</h2>
+      <h2>Medication Plan &mdash; Evidence-Based Tiering</h2>
+      <p style="font-size:0.85em; color:#718096;">Prescribed by Dr. Chowdhry (sister). Every item tied to confirmed blood work abnormality. Nothing generic.</p>
 
       <div class="alert-green">
-        <strong>All 4 critical supplements running consistently as of Mar 6, 2026.</strong>
+        <strong>All Tier 1 supplements running consistently as of Mar 6, 2026.</strong>
       </div>
 
+      <h3>Tier 1: Active &mdash; Blood Work-Driven (Non-Negotiable)</h3>
+      <p style="font-size:0.85em; color:#718096;">Every item directly addresses a CONFIRMED abnormality from Feb 2026 blood work.</p>
       <table>
-        <tr><th>Supplement</th><th>Brand</th><th>Dose</th><th>Timing</th><th>Status</th></tr>
+        <tr><th>Supplement</th><th>Dose</th><th>When</th><th>Blood Work Trigger</th><th>Evidence</th><th>Status</th></tr>
         <tr>
-          <td><strong>Vitamin B12 Injection</strong></td>
-          <td>Neurobion Forte IM (Merck)</td>
+          <td><strong>Neurobion Forte IM</strong><br><span style="font-size:0.8em;color:#718096;">B1 + B6 + B12 injection</span></td>
           <td>1 injection weekly</td>
-          <td>Weekly (any day)</td>
+          <td>Weekly, any clinic</td>
+          <td class="high">B12 &lt;148 pg/mL (undetectable)</td>
+          <td>Oral B12 insufficient at &lt;148. IM injection bypasses absorption. B6 cofactor for homocysteine metabolism. <a href="https://pubmed.ncbi.nlm.nih.gov/9508561/" style="font-size:0.8em;">[NEJM]</a></td>
           <td><span class="pill pill-rx">PRESCRIBED</span></td>
         </tr>
         <tr>
-          <td><strong>Vitamin D3 60K</strong></td>
-          <td>Uprise-D3 60K (Alkem)</td>
+          <td><strong>Vitamin D3 60K</strong><br><span style="font-size:0.8em;color:#718096;">Uprise-D3 (Alkem)</span></td>
           <td>60,000 IU weekly</td>
-          <td>With fattiest meal of the week</td>
+          <td>With fattiest meal</td>
+          <td class="high">Vit D 11.7 ng/mL (was 15.1 in 2019 &mdash; got WORSE)</td>
+          <td>Endocrine Society guidelines: 50-60K IU/wk for 6-8 weeks at &lt;20 ng/mL. Fat-soluble = take with fat for ~50% better absorption. <a href="https://academic.oup.com/jcem/article/96/7/1911/2833671" style="font-size:0.8em;">[Endocrine Society]</a></td>
           <td><span class="pill pill-active">ACTIVE</span></td>
         </tr>
         <tr>
-          <td><strong>Omega-3 (Fish Oil)</strong></td>
-          <td>Muscle Nectar (TG form, Sardine)</td>
-          <td>2 soft gels/day (EPA 900mg + DHA 600mg)</td>
+          <td><strong>Omega-3 Fish Oil</strong><br><span style="font-size:0.8em;color:#718096;">Muscle Nectar (TG form, Sardine)</span></td>
+          <td>2 soft gels/day<br>(EPA 900mg + DHA 600mg)</td>
           <td>Before food</td>
+          <td class="high">Triglycerides 352 mg/dL (3.2x increase since 2019)</td>
+          <td>AHA: 2-4g EPA+DHA/day for hypertriglyceridemia. 1-2g EPA reduces TG by 15-25%. <a href="https://www.ahajournals.org/doi/10.1161/CIR.0000000000000709" style="font-size:0.8em;">[JACC 2019, Skulas-Ray]</a></td>
           <td><span class="pill pill-active">ACTIVE</span></td>
         </tr>
         <tr>
           <td><strong>Folic Acid</strong></td>
-          <td>&mdash;</td>
           <td>Daily</td>
           <td>Morning</td>
+          <td class="high">Homocysteine elevated 7+ years (26.2 &rarr; 19.78)</td>
+          <td>B12 + folate both required for homocysteine clearance. Also pre-conception essential (sperm DNA quality).</td>
           <td><span class="pill pill-active">ACTIVE</span></td>
         </tr>
         <tr>
-          <td><strong>Plant Protein</strong></td>
-          <td>The Whole Truth (Pista Badaam 24g)</td>
+          <td><strong>Plant Protein</strong><br><span style="font-size:0.8em;color:#718096;">The Whole Truth (Pista Badaam 24g)</span></td>
           <td>Daily</td>
           <td>Post-exercise / anytime</td>
+          <td>Protein support for exercise recovery + muscle building</td>
+          <td>Leucine threshold: ~2.5-3g per meal for muscle protein synthesis. <a href="https://pubmed.ncbi.nlm.nih.gov/22150425/" style="font-size:0.8em;">[Norton, J Nutrition]</a></td>
           <td><span class="pill pill-active">ACTIVE</span></td>
         </tr>
       </table>
 
-      <h3>Omega-3 Dose Analysis</h3>
+      <h3>Tier 2: Add in 2-3 Weeks (Metabolic + Recovery)</h3>
+      <p style="font-size:0.85em; color:#718096;">Important but not urgent this week. Let Tier 1 settle so you know what's causing what.</p>
+      <table>
+        <tr><th>Supplement</th><th>Dose</th><th>When</th><th>Why</th><th>Evidence</th><th>Status</th></tr>
+        <tr>
+          <td><strong>Increase Omega-3 to 4 caps/day</strong></td>
+          <td>1800mg EPA + 1200mg DHA</td>
+          <td>2 before lunch, 2 before dinner</td>
+          <td>Closer to Huberman's 2g EPA target. More aggressive TG reduction for 352.</td>
+          <td>AHA recommends 2-4g for TG &gt;200. <a href="https://www.ahajournals.org/doi/10.1161/CIR.0000000000000709" style="font-size:0.8em;">[JACC]</a></td>
+          <td><span class="pill pill-wait">AFTER 2-3 WEEKS (if no GI issues)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Magnesium Glycinate</strong><br><span style="font-size:0.8em;color:#718096;">NOW Foods or HealthyHey</span></td>
+          <td>400mg</td>
+          <td>Before bed</td>
+          <td>Mag at 1.6 (bottom of range). Improves insulin sensitivity, sleep, muscle function. Cofactor for B12 metabolism.</td>
+          <td>Magnesium supplementation improves insulin resistance in metabolic syndrome. <a href="https://pubmed.ncbi.nlm.nih.gov/16511381/" style="font-size:0.8em;">[Diabetes Care, Barbagallo]</a></td>
+          <td><span class="pill pill-wait">ADD WEEK 3</span></td>
+        </tr>
+        <tr>
+          <td><strong>Grape Seed Extract</strong></td>
+          <td>400-800mg/day</td>
+          <td>Morning</td>
+          <td>Huberman takes daily. Improved vascular function, blood flow, antioxidant.</td>
+          <td>Meta-analysis: reduces systolic BP, improves endothelial function. <a href="https://pubmed.ncbi.nlm.nih.gov/21802563/" style="font-size:0.8em;">[PubMed]</a></td>
+          <td><span class="pill pill-wait">ADD WEEK 3</span></td>
+        </tr>
+      </table>
+
+      <h3>Tier 3: Pre-Conception (Discuss with Doctor by May 2026)</h3>
+      <p style="font-size:0.85em; color:#718096;">Target conception July 2026. These optimize sperm quality. Start 2-3 months before.</p>
+      <table>
+        <tr><th>Supplement</th><th>Dose</th><th>Why</th><th>Status</th></tr>
+        <tr>
+          <td><strong>Zinc</strong></td>
+          <td>25-30mg/day</td>
+          <td>Sperm quality + testosterone production. Critical for male fertility.</td>
+          <td><span class="pill pill-wait">DISCUSS BY MAY</span></td>
+        </tr>
+        <tr>
+          <td><strong>CoQ10</strong></td>
+          <td>200mg/day</td>
+          <td>Sperm motility + mitochondrial energy. Huberman recommends for male fertility.</td>
+          <td><span class="pill pill-wait">DISCUSS BY MAY</span></td>
+        </tr>
+      </table>
+
+      <h3>Tier 4: Conditional &mdash; Based on Retest (May-June 2026)</h3>
+      <p style="font-size:0.85em; color:#718096;">Only add if specific markers haven't normalized on retest.</p>
+      <table>
+        <tr><th>Supplement</th><th>Dose</th><th>Condition</th><th>Status</th></tr>
+        <tr>
+          <td><strong>Betaine (TMG)</strong><br><span style="font-size:0.8em;color:#718096;">Decode Age or NOW Sports</span></td>
+          <td>1500-3000mg/day</td>
+          <td>Only if homocysteine still &gt;12 on retest despite B12 repletion. Directly donates methyl groups via BHMT pathway. <a href="https://pubmed.ncbi.nlm.nih.gov/15618537/" style="font-size:0.8em;">[Am J Clin Nutr]</a></td>
+          <td><span class="pill pill-wait">WAIT FOR RETEST</span></td>
+        </tr>
+        <tr>
+          <td><strong>Sublingual Methylcobalamin</strong></td>
+          <td>1000-5000 mcg/day</td>
+          <td>Switch from injections once B12 normalizes. Better absorbed than oral cyanocobalamin.</td>
+          <td><span class="pill pill-wait">WAIT FOR RETEST</span></td>
+        </tr>
+      </table>
+
+      <h3>Removed from Plan (With Reasoning)</h3>
+      <table>
+        <tr><th>Item</th><th>Why Removed</th></tr>
+        <tr><td><s>Shilajit Gummies (Man Matters, KSM-66 Ashwagandha)</s></td><td>Doesn't address any of the 3 critical issues (TG, B12, D). Fulvic acid adds unpredictable mineral absorption with heavy supplement load. Ashwagandha interacts with thyroid (currently normal &mdash; no reason to introduce a variable). Let it expire.</td></tr>
+      </table>
+
+      <div class="alert-green">
+        <strong>Daily schedule (once fully phased in):</strong><br>
+        Morning: Folic Acid + Grape Seed Extract<br>
+        Before lunch: 2x Omega-3 + weekly D3 60K<br>
+        Before dinner: 2x Omega-3<br>
+        Bedtime: Magnesium Glycinate 400mg<br>
+        Weekly: B12 injection (any clinic)<br>
+        Anytime: Plant protein<br>
+        Manageable. No overwhelm.
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MY PRODUCTS ==================== -->
+  <div class="sub-panel" id="abhas-products">
+    <div class="card">
+      <h2>My Products</h2>
+
+      <h3>Muscle Nectar Omega-3 Fish Oil &mdash; DAILY USE</h3>
       <table>
         <tr><th>Per Serving (2 soft gels)</th><th>Amount</th></tr>
-        <tr><td>Fish Oil</td><td>2500 mg</td></tr>
+        <tr><td>Fish Oil (TG form, Sardine)</td><td>2500 mg</td></tr>
         <tr><td>Total EPA + DHA</td><td>1500 mg</td></tr>
         <tr><td><strong>EPA</strong></td><td><strong>900 mg</strong></td></tr>
         <tr><td><strong>DHA</strong></td><td><strong>600 mg</strong></td></tr>
         <tr><td>Vitamin K2 (MK-7)</td><td>55 mcg</td></tr>
         <tr><td>Vitamin D3</td><td>10 mcg</td></tr>
+        <tr><td>Vitamin E</td><td>10 mg</td></tr>
       </table>
-
-      <div class="alert-blue">
-        <strong>EPA target (Huberman):</strong> 2g/day. Current: 900mg (2 caps). Consider increasing to 4 caps (1800mg EPA) after 2-3 weeks if no GI issues. 900mg is still a solid therapeutic dose &mdash; studies show 1-2g EPA reduces triglycerides by 15-25%.
+      <div class="alert-green">
+        <strong>TG form = superior absorption</strong> over ethyl ester (EE). Sardine-sourced. K2 + D3 already included &mdash; no need for separate K2 supplement (Huberman recommended it, this product already has it). Photos in <code>supplements/</code> folder.
       </div>
 
-      <h3>Consider Adding (Pre-Conception + Metabolic)</h3>
+      <h3>The Whole Truth Pista Badaam &mdash; DAILY USE</h3>
       <table>
-        <tr><th>Supplement</th><th>Why</th><th>Status</th></tr>
-        <tr><td>Zinc (25-30mg)</td><td>Sperm quality + testosterone</td><td><span class="pill pill-wait">DISCUSS</span></td></tr>
-        <tr><td>CoQ10 (200mg)</td><td>Sperm motility + energy</td><td><span class="pill pill-wait">DISCUSS</span></td></tr>
-        <tr><td>Magnesium Glycinate (400mg)</td><td>Bottom of range (1.6), helps insulin + sleep</td><td><span class="pill pill-wait">DISCUSS</span></td></tr>
-        <tr><td>Grape Seed Extract (400-800mg)</td><td>Huberman protocol &mdash; vascular function</td><td><span class="pill pill-wait">DISCUSS</span></td></tr>
+        <tr><td>Protein: <strong class="good">24g</strong> per serve</td><td>Clean label, no artificial sweeteners</td></tr>
       </table>
+      <div class="alert-blue">Good quality plant protein. Use post-exercise or anytime to hit daily protein goals.</div>
 
-      <h3>Ruled Out</h3>
+      <h3>Neurobion Forte IM &mdash; WEEKLY INJECTION</h3>
       <table>
-        <tr><th>Supplement</th><th>Verdict</th></tr>
-        <tr><td>Shilajit Gummies (Man Matters, KSM-66 Ashwagandha)</td><td>SKIP &mdash; doesn't address critical issues (TG, B12, D). Fulvic acid adds unpredictable mineral absorption. Ashwagandha affects thyroid (currently normal). Let it expire.</td></tr>
+        <tr><th>Component</th><th>Amount</th><th>Purpose</th></tr>
+        <tr><td>Vitamin B1 (Thiamine)</td><td>100 mg</td><td>Energy metabolism</td></tr>
+        <tr><td>Vitamin B6 (Pyridoxine)</td><td>100 mg</td><td>Homocysteine metabolism cofactor</td></tr>
+        <tr><td>Vitamin B12 (Cyanocobalamin)</td><td>1000 mcg</td><td>Severe deficiency recovery</td></tr>
       </table>
+      <div class="alert-neutral">Merck/P&G. Gold standard B-complex IM injection. ~&#8377;35/ampoule at any pharmacy. Smart choice over plain B12 because added B6 attacks homocysteine from another angle.</div>
+
+      <h3>Uprise-D3 60K &mdash; WEEKLY</h3>
+      <table>
+        <tr><td>Cholecalciferol: <strong>60,000 IU</strong></td><td>Nano-formulation = superior absorption</td><td>Alkem brand, soft gel capsule</td></tr>
+      </table>
+      <div class="alert-neutral">~&#8377;120/4 caps at any pharmacy. No prescription needed. Take with fattiest meal for ~50% better absorption (fat-soluble vitamin).</div>
     </div>
   </div>
 
@@ -2097,6 +2305,78 @@
     </div>
   </div>
 
+  <!-- ==================== ALLERGIES ==================== -->
+  <div class="sub-panel" id="abhas-allergies">
+    <div class="card">
+      <h2>Allergies &mdash; IgE Elevated</h2>
+
+      <div class="alert-red">
+        <strong>IgE Total: 300 IU/mL (3x upper limit of 100).</strong> Tested Mar 2024. Indicates significant allergic sensitization.
+      </div>
+
+      <h3>Likely Causes</h3>
+      <table>
+        <tr><th>Allergen</th><th>Likelihood</th><th>Why</th></tr>
+        <tr><td>Dust mites</td><td class="watch">HIGH</td><td>Most common indoor allergen in Mumbai humidity. Present in mattresses, pillows, carpets.</td></tr>
+        <tr><td>Pollen / Environmental</td><td class="watch">MEDIUM</td><td>Mumbai + Gurgaon exposure. Seasonal variation.</td></tr>
+        <tr><td>Food sensitivities</td><td>POSSIBLE</td><td>Less likely but worth ruling out if symptoms persist.</td></tr>
+        <tr><td>Parasitic infection</td><td>LOW</td><td>Can elevate IgE. Less likely but can be ruled out with stool test.</td></tr>
+      </table>
+
+      <h3>Impact on Health</h3>
+      <p>Chronic immune activation at IgE 300 contributes to:</p>
+      <ul>
+        <li>Fatigue and low energy (immune system constantly active)</li>
+        <li>Systemic inflammation (compounds metabolic issues)</li>
+        <li>Poor sleep quality (nighttime congestion)</li>
+      </ul>
+
+      <h3>Action Needed</h3>
+      <table>
+        <tr><th>Action</th><th>Status</th></tr>
+        <tr><td><strong>Specific IgE panel / Skin prick allergy test</strong></td><td><span class="pill pill-start">BOOK</span></td></tr>
+        <tr><td>Anti-allergen mattress + pillow covers</td><td><span class="pill pill-wait">AFTER TEST RESULTS</span></td></tr>
+        <tr><td>AC vent + bathroom mold check</td><td><span class="pill pill-wait">EASY WIN</span></td></tr>
+      </table>
+
+      <div class="alert-blue">
+        <strong>Priority:</strong> Not urgent vs. the metabolic issues, but an allergy workup would reduce background inflammation and improve energy. Book alongside the May-June retest blood work.
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SKIN ==================== -->
+  <div class="sub-panel" id="abhas-skin">
+    <div class="card">
+      <h2>Skin</h2>
+
+      <h3>Current Status (Mar 2026)</h3>
+      <div class="alert-orange">
+        <strong>Flareup during Delhi trip</strong> (late Feb 2026). Likely environmental trigger &mdash; different water, pollution, stress (cousin's funeral). Back in Bombay, improving.
+      </div>
+
+      <h3>Current Routine</h3>
+      <table>
+        <tr><th>Step</th><th>Product</th><th>When</th></tr>
+        <tr><td>1. Facewash</td><td>&mdash;</td><td>Morning + evening</td></tr>
+        <tr><td>2. Serum</td><td>&mdash;</td><td>After facewash</td></tr>
+        <tr><td>3. Moisturizer</td><td>&mdash;</td><td>After serum</td></tr>
+      </table>
+
+      <h3>Contributing Factors</h3>
+      <ul>
+        <li><strong>B12 deficiency</strong> &mdash; can cause skin changes (hyperpigmentation, poor healing)</li>
+        <li><strong>Vitamin D deficiency</strong> &mdash; linked to inflammatory skin conditions</li>
+        <li><strong>IgE 300</strong> &mdash; allergic sensitization can manifest as skin reactions</li>
+        <li><strong>Stress</strong> &mdash; cortisol spikes worsen skin (Delhi trip was high-stress)</li>
+      </ul>
+
+      <div class="alert-green">
+        <strong>Expect improvement:</strong> As B12 and D normalize over the next 2-3 months, skin should improve naturally. The supplement protocol addresses root causes.
+      </div>
+    </div>
+  </div>
+
   <!-- ==================== ROUTINES ==================== -->
   <div class="sub-panel" id="abhas-routines">
     <div class="card">
@@ -2151,6 +2431,102 @@
         <li>No caffeine after 2pm</li>
         <li>Screens dim/off 30-60 min before bed</li>
         <li>If sleep ever degrades, fix it before everything else &mdash; it's the foundation</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== DOCTORS & EXPERTS ==================== -->
+  <div class="sub-panel" id="abhas-experts">
+    <div class="card">
+      <h2>Doctors &amp; Experts</h2>
+
+      <h3>Active Doctors</h3>
+      <table>
+        <tr><th>Doctor</th><th>Role</th><th>What They Did</th><th>Next</th></tr>
+        <tr>
+          <td><strong>Dr. Chowdhry (Sister)</strong></td>
+          <td>Primary prescriber</td>
+          <td>Prescribed B12 injection protocol (Neurobion Forte), D3 loading dose, Betaine/TMG for homocysteine, full supplement stack</td>
+          <td>Review at retest (May-June 2026)</td>
+        </tr>
+      </table>
+
+      <h3>Needed Consultations</h3>
+      <table>
+        <tr><th>Specialist</th><th>Why</th><th>Status</th></tr>
+        <tr>
+          <td><strong>Internal Medicine / Endocrinologist</strong></td>
+          <td>Metabolic syndrome supervision. Review B12 (&lt;148), D (11.7), TG (352), HDL (27). Order fasting insulin + HOMA-IR.</td>
+          <td><span class="pill pill-start">BOOK</span></td>
+        </tr>
+        <tr>
+          <td><strong>Allergist / Immunologist</strong></td>
+          <td>IgE at 300 (3x normal). Skin prick test / specific IgE panel needed.</td>
+          <td><span class="pill pill-wait">BOOK WITH RETEST</span></td>
+        </tr>
+        <tr>
+          <td><strong>Dermatologist</strong></td>
+          <td>Skin flareup (if it doesn't resolve as B12/D normalize)</td>
+          <td><span class="pill pill-wait">ONLY IF NEEDED</span></td>
+        </tr>
+      </table>
+
+      <h3>Protocol Sources &mdash; Experts Informing This Plan</h3>
+      <p style="font-size:0.85em; color:#718096;">Full synthesis: <code>knowledge/expert-protocols-comprehensive-guide.md</code></p>
+      <table>
+        <tr><th>Expert</th><th>Domain</th><th>What We Use From Them</th></tr>
+        <tr>
+          <td><strong>Andrew Huberman</strong><br><span style="font-size:0.8em;color:#718096;">Stanford Neuroscience</span></td>
+          <td>Fitness, supplements, circadian biology</td>
+          <td>EPA 2g target, morning sunlight protocol, exercise template, grape seed extract, monthly alternation (strength/hypertrophy), sleep stack</td>
+        </tr>
+        <tr>
+          <td><strong>Peter Attia</strong><br><span style="font-size:0.8em;color:#718096;">MD, Longevity Medicine</span></td>
+          <td>Exercise framework, metabolic health</td>
+          <td>4-pillar exercise model (stability/strength/Zone 2/Zone 5), stability routine (10-min warmup), triglyceride targets, centenarian decathlete concept</td>
+        </tr>
+        <tr>
+          <td><strong>Dr. Rhonda Patrick</strong><br><span style="font-size:0.8em;color:#718096;">FoundMyFitness</span></td>
+          <td>Micronutrients, sauna, cold exposure</td>
+          <td>Vitamin D dosing research, Omega-3 bioavailability (TG &gt; EE form), sauna cardiovascular protocol</td>
+        </tr>
+        <tr>
+          <td><strong>Dr. Michael Greger</strong><br><span style="font-size:0.8em;color:#718096;">NutritionFacts.org</span></td>
+          <td>Plant-based nutrition</td>
+          <td>Daily Dozen checklist, fiber for triglycerides, specific food recommendations for Indian vegetarian diet</td>
+        </tr>
+        <tr>
+          <td><strong>Dr. Layne Norton</strong><br><span style="font-size:0.8em;color:#718096;">PhD Nutrition Science</span></td>
+          <td>Protein metabolism, resistance training</td>
+          <td>Vegetarian protein targets, leucine threshold (~2.5-3g/meal for muscle protein synthesis), training-nutrition timing</td>
+        </tr>
+        <tr>
+          <td><strong>AHA / ESC / Endocrine Society</strong></td>
+          <td>Clinical guidelines</td>
+          <td>EPA dosing for hypertriglyceridemia (2-4g/day), D3 loading protocol for &lt;20 ng/mL, cardiovascular risk thresholds</td>
+        </tr>
+      </table>
+
+      <h3>Key References</h3>
+      <ul style="font-size:0.85em;">
+        <li>American Heart Association (AHA) 2019 Guidelines on Cardiovascular Risk</li>
+        <li>European Society of Cardiology (ESC) 2019 Dyslipidemia Guidelines</li>
+        <li>Endocrine Society Clinical Practice Guidelines on Vitamin D (2024)</li>
+        <li><em>NEJM</em> &mdash; Homocysteine and cardiovascular disease (Wald et al.)</li>
+        <li><em>Circulation</em> &mdash; HDL-C and cardiovascular risk (Madsen et al., 2017)</li>
+        <li><em>Diabetes Care</em> &mdash; Magnesium and insulin resistance (Barbagallo &amp; Dominguez, 2015)</li>
+        <li><em>JACC</em> &mdash; Omega-3 fatty acids for hypertriglyceridemia (Skulas-Ray et al., 2019)</li>
+      </ul>
+
+      <h3>Files on Record</h3>
+      <ul style="font-size:0.85em;">
+        <li>Blood report: Jul 2019 (age 26) &mdash; <code>blood-reports/2019-07-07.pdf</code></li>
+        <li>Blood report: Feb 2021 (age 28) &mdash; <code>blood-reports/2021-02-07.pdf</code></li>
+        <li>Blood report: Mar 2024 (age 31) &mdash; <code>blood-reports/2023-03-15.pdf</code></li>
+        <li>Blood report: Feb 2026 (age 33) &mdash; <code>blood-reports/2026-02-05.pdf</code></li>
+        <li>Full analysis: <code>analysis/HEALTH-ANALYSIS.md</code></li>
+        <li>Expert protocol synthesis: <code>knowledge/expert-protocols-comprehensive-guide.md</code></li>
+        <li>Supplement product photos: <code>supplements/</code></li>
       </ul>
     </div>
   </div>
